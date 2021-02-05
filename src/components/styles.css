@@ -1,0 +1,209 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+.user-profile img{
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+/* MAPS */
+.map-container{
+  display:flex;
+  position: relative;
+}
+.map { 
+  width: 100%;
+  height: calc(100vh - 200px); /*without this the map doesn't show anything*/
+}		
+
+.leaflet-container {
+  height: inherit;
+}
+
+.filters {
+  width: 30%;
+  display: block;
+  float: left;
+  text-align: center;
+  background: snow;
+}
+
+.mycluster {
+  width: 30px !important;
+  height: 30px !important;
+  background-color: rgba(110, 204, 57);
+    box-shadow: 0px 0px 10px green;
+  text-align: center;
+  font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
+  background-clip: padding-box;
+      border-radius: 20px;
+  line-height: 30px;
+  cursor: pointer;
+
+
+  background-image: url(https://rentitfurnished.com/vancouver/wp-content/plugins/facetwp-map-facet-cf/assets/img/cluster40.png);
+  background-position: center;
+  box-shadow: 0px 0px 10px red;
+  color: white;
+  position: absolute;
+  font-size: 11px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;		
+}
+
+.property-price{
+  background-color: #bc3b3b;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 800;
+  max-width: 100px;
+  padding: 3px 8px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 3px 2px rgb(0 0 0 / 30%);
+  background-image: linear-gradient(to bottom,#000 .2,#000 0);
+  background-repeat: repeat-x;
+  position: relative;
+  display: block;
+  width: fit-content;
+}
+
+.arrow{
+  border-top-color: #bc3b3b;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-width: 6px 6px 0;
+  top: 100%;
+  left: 50%;
+  border-style: solid;
+  height: 0;
+  position: absolute;
+  width: 0;
+  transform: translateX(-50%);	
+}
+.gm-style .gm-style-iw-c {
+  position: absolute;
+  box-sizing: border-box;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  transform: translate(-50%,-100%);
+  background-color: white;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 7px 1px rgb(0 0 0 / 30%);
+  padding-right: 0px;
+  padding-bottom: 0px;
+  max-width: 648px;
+  max-height: 287px;
+  min-width: 0px;
+}
+
+.gm-style .gm-style-iw-d {
+  box-sizing: border-box;
+  overflow: auto;
+  overflow: scroll;
+    max-height: 269px;
+}
+.infowindow-content {
+  width: 250px;
+  line-height: .9;
+  overflow: none;
+}
+.infowindow-content p {
+  margin-bottom: .5em;
+  text-align: left;
+}
+.infowindow-content .infowindow-image img {
+  width: 250px;
+  max-width: none;
+  display: block;
+    height: auto;
+}
+
+a{
+  text-decoration: none;
+  color: #bc3b3b !important;
+  line-height: 13px;
+}
+
+h1 a {
+  color: black !important;
+}
+
+a:hover{
+  opacity: .7;
+}
+
+#search-on-map-move {
+  padding: 10px;
+  border: 1px solid gray;
+  position: absolute;
+  top: 25px;
+  z-index: 9999;
+  background: #bc3b3b;
+  right: 25px;
+  color: white;
+  font-family: Arial;
+  box-shadow: 0px 0px 6px red;
+}
+
+#local-content-widget {
+  max-width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+#loading{
+  background-image: url('https://img1.picmix.com/output/stamp/normal/8/5/2/9/509258_fb107.gif');
+  width: 120px;
+  height: 120px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 30%;
+}
