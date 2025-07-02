@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+
+# production build
+build/
+
+# misc
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# editor files
+.vscode/
+.idea/
+*.swp
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# SCSS artifacts
+.sass-cache/
+*.css.map 
