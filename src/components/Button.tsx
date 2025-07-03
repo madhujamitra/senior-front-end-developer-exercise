@@ -1,7 +1,8 @@
 
 interface ButtonProps {
     text: string,
-    color: string,
+    color?: string,
+    className?: string,
     onClick: () => void,
 }
 const Button = ({ color, text, onClick }: ButtonProps) => {
