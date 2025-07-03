@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 import { useLocation } from 'react-router-dom'
 import Button from './Button'
 import { Link } from 'react-router-dom'
+import SearchBar from './SearchBar/SearchBar'
+import { SearchState } from '../App'
 
 
 /*interface Props {
@@ -12,10 +14,12 @@ import { Link } from 'react-router-dom'
 interface HeaderProps {
     title: string,
     onAdd: () => void,
-    showAdd?: boolean
+    showAdd?: boolean,
+    search: SearchState,
+    setSearch: (search: SearchState) => void
 }
 
-const Header = ({ title, onAdd, showAdd }: HeaderProps) => {
+const Header = ({ title, onAdd, showAdd, search, setSearch }: HeaderProps) => {
 
     const location = useLocation();
 
@@ -24,9 +28,9 @@ const Header = ({ title, onAdd, showAdd }: HeaderProps) => {
             <h1>
                 <div>
                     <Link to="/">{title}</Link>
-                    <input type="search" style={{ margin: "30px" }} />
                 </div>
             </h1>
+            <SearchBar search={search} setSearch={setSearch} />
             <div>
                 <span>Create a Listing | Live Chat | FAQ | Contact</span>
                 {location.pathname === '/' && <Button color={showAdd ? 'red' : 'green'}

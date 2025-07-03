@@ -1,0 +1,122 @@
+[
+  {
+    "id": "1",
+    "title": "Modern Apartment in Downtown",
+    "image": "/images/property1.jpg",
+    "price": 2500,
+    "location": "Downtown",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "description": "A beautiful modern apartment in the heart of the city.",
+    "amenities": ["Pool", "Gym", "Parking"],
+    "propertyType": "apartment"
+  },
+  {
+    "id": "2",
+    "title": "Cozy Suburban House",
+    "image": "/images/property2.jpg",
+    "price": 3200,
+    "location": "Suburbia",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "description": "Spacious house with a large backyard.",
+    "amenities": ["Garden", "Garage"],
+    "propertyType": "house"
+  },
+  {
+    "id": "3",
+    "title": "Luxury Condo with City View",
+    "image": "/images/property3.jpg",
+    "price": 4000,
+    "location": "Uptown",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "description": "Condo with amazing city views and modern amenities.",
+    "amenities": ["Concierge", "Gym", "Rooftop"],
+    "propertyType": "condo"
+  },
+  {
+    "id": "4",
+    "title": "Family Home Near Park",
+    "image": "/images/property4.jpg",
+    "price": 2800,
+    "location": "Greenfield",
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "description": "Perfect family home close to schools and parks.",
+    "amenities": ["Playground", "Garage"],
+    "propertyType": "house"
+  },
+  {
+    "id": "5",
+    "title": "Chic Loft in Arts District",
+    "image": "/images/property5.jpg",
+    "price": 2200,
+    "location": "Arts District",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "description": "Stylish loft with open floor plan and lots of light.",
+    "amenities": ["Open Space", "Pet Friendly"],
+    "propertyType": "apartment"
+  },
+  {
+    "id": "6",
+    "title": "Townhouse with Private Patio",
+    "image": "/images/property6.jpg",
+    "price": 3100,
+    "location": "Westside",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "description": "Townhouse with private outdoor space and modern kitchen.",
+    "amenities": ["Patio", "Parking"],
+    "propertyType": "house"
+  },
+  {
+    "id": "7",
+    "title": "Affordable Studio",
+    "image": "/images/property7.jpg",
+    "price": 1500,
+    "location": "Midtown",
+    "bedrooms": 0,
+    "bathrooms": 1,
+    "description": "Compact studio ideal for students or singles.",
+    "amenities": ["Laundry", "Elevator"],
+    "propertyType": "apartment"
+  },
+  {
+    "id": "8",
+    "title": "Penthouse Suite",
+    "image": "/images/property8.jpg",
+    "price": 6000,
+    "location": "Downtown",
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "description": "Exclusive penthouse with panoramic city views.",
+    "amenities": ["Rooftop", "Concierge", "Gym"],
+    "propertyType": "condo"
+  },
+  {
+    "id": "9",
+    "title": "Historic Home with Charm",
+    "image": "/images/property9.jpg",
+    "price": 2700,
+    "location": "Old Town",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "description": "Charming historic home with modern updates.",
+    "amenities": ["Fireplace", "Garden"],
+    "propertyType": "house"
+  },
+  {
+    "id": "10",
+    "title": "Eco-Friendly Apartment",
+    "image": "/images/property10.jpg",
+    "price": 2300,
+    "location": "Eco Park",
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "description": "Green building with energy-efficient features.",
+    "amenities": ["Solar Panels", "Bike Storage"],
+    "propertyType": "apartment"
+  }
+] 

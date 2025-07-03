@@ -126,11 +126,11 @@ const BaseMap = () => {
 
     return (
         <div className="map-container">
-            <div className="filters">
+            {/* <div className="filters">
 
                 here comes the filters
 
-            </div>
+            </div> */}
             <div className="map">
                 <MapContainer center={position} zoom={15} scrollWheelZoom={true}>
                     <TileLayer
