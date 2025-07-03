@@ -1,0 +1,21 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.errorMessage {
+  color: $primary-red;
+  background: $error-bg;
+  padding: $spacing-md;
+  border-radius: 8px;
+  text-align: center;
+  margin: $spacing-lg auto;
+  max-width: 400px;
+  font-weight: 500;
+}
+
+@include respond(mobile) {
+  .errorMessage {
+    font-size: $font-sm;
+    padding: $spacing-sm;
+    max-width: 95vw;
+  }
+} 
