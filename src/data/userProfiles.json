@@ -1,0 +1,40 @@
+[
+  {
+    "userProfileID": "1",
+    "username": "johndoe",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "johndoe1@example.com",
+    "phone": "+1 (555) 123-4567",
+    "profileImage": "/images/avatar-default.png",
+    "bio": "Real estate enthusiast looking for the perfect downtown apartment. Love modern amenities and city views.",
+    "location": "Vancouver, BC",
+    "joinDate": "2023-01-15",
+    "preferences": {
+      "propertyType": "apartment",
+      "maxBudget": 3500,
+      "bedrooms": 2,
+      "amenities": ["gym", "parking", "pool"]
+    },
+    "password": "password@123"
+  },
+  {
+    "userProfileID": "2",
+    "username": "janedoe",
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "email": "janedoe@example.com",
+    "phone": "+1 (555) 987-6543",
+    "profileImage": "/images/avatar-default.png",
+    "bio": "Family-oriented professional seeking a spacious home with good schools nearby. Prefer suburban areas with parks.",
+    "location": "Toronto, ON",
+    "joinDate": "2023-03-22",
+    "preferences": {
+      "propertyType": "house",
+      "maxBudget": 4500,
+      "bedrooms": 3,
+      "amenities": ["garden", "garage", "playground"]
+    },
+    "password": "password@456"
+  }
+] 

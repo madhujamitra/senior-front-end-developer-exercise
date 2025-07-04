@@ -4,9 +4,15 @@ import { useState } from 'react';
 import Header from './components/Header'
 import Footer from './components/Footer'
 import UserProfiles from './components/UserProfiles'
-import BaseMap from './components/BaseMap'
+
 import PropertyData from './components/PropertyData';
 import PropertyListingsPage from './components/PropertyListingsPage/PropertyListingsPage';
+import PropertyDetail from './components/PropertyDetail/PropertyDetail';
+import Dashboard from './components/Dashboard/Dashboard';
+import { AuthProvider } from './components/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import Login from './components/Login';
+
 
 export interface SearchState {
   location: string;
@@ -16,17 +22,22 @@ function App() {
   const [search, setSearch] = useState<SearchState>({ location: '' });
 
   return (
-    <Router>
-      <div className="container">
-        <Header onAdd={() => { console.log("lalala") }} search={search} setSearch={setSearch} />
+    <AuthProvider>
+      <Router>
+        <div className="container">
+          <Header onAdd={() => { console.log("lalala") }} search={search} setSearch={setSearch} />
 
-        <Route path="/" exact component={BaseMap} />
-        <Route path='/user-profiles' component={UserProfiles} />
-        <Route path='/property/:id' component={PropertyData} />
-        <Route path="/properties" render={() => <PropertyListingsPage search={search} />} />
-        <Footer />
-      </div>
-    </Router>
+         
+          <Route path='/user-profiles' component={UserProfiles} />
+          <Route path='/property/:id' component={PropertyDetail} />
+          <Route path="/" exact render={() => <PropertyListingsPage search={search} />} />
+          <Route path='/login' component={Login} />
+          <ProtectedRoute path='/dashboard' component={Dashboard} />
+          
+          <Footer />
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

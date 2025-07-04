@@ -34,6 +34,10 @@ const PropertyListingsPage: React.FC<PropertyListingsPageProps> = ({ search }) =
     return search.location === '' || property.location.toLowerCase().includes(search.location.toLowerCase());
   });
 
+  const handleCardClick = (id: string) => {
+    window.open(`/property/${id}`, '_blank');
+  };
+
   if (loading) return <LoadingSpinner />;
   if (error) return <ErrorMessage message={error} />;
 
@@ -42,7 +46,18 @@ const PropertyListingsPage: React.FC<PropertyListingsPageProps> = ({ search }) =
       <div className={styles['property-listings-flex__list']}>
         <div className={styles['property-listings__grid']}>
           {filteredProperties.map((property) => (
-            <PropertyCard key={property.id} property={property} />
+            <div
+              key={property.id}
+              className={styles.cardWrapper}
+              onClick={() => handleCardClick(property.id)}
+              role="button"
+              tabIndex={0}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') handleCardClick(property.id);
+              }}
+            >
+              <PropertyCard property={property} />
+            </div>
           ))}
         </div>
       </div>

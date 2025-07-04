@@ -22,7 +22,7 @@ const PropertyMarker = (property: Property) => {
                                 <div className="infowindow-content">
                                     <p className="infowindow-title">
                                         <Link to="/property/123123123">{property.description}</Link>
-                                        {/*<a href={property.url?.toString()} title={property.description}>${property.description}</a>*/}
+                                        {/* <a href={property.url?.toString()} title={property.description}>${property.description}</a> */}
                                     </p>
                                     <div className="infowindow-image"><img alt="prop" src={property.imgUrl?.toString()} /></div>
                                 </div>
