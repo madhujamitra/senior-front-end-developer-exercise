@@ -3,7 +3,7 @@ import { useLocation, useHistory, Link } from 'react-router-dom'
 import Button from './Button'
 import SearchBar from './SearchBar/SearchBar'
 import { SearchState } from '../App'
-import { useAuth } from './AuthContext';
+import { useAuth } from '../context/AuthContext';
 import React from 'react';
 
 /*interface Props {

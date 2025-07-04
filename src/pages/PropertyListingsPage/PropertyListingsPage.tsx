@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styles from './PropertyListingsPage.module.scss';
-import PropertyCard from '../PropertyCard/PropertyCard';
+import PropertyCard from '../../components/PropertyCard/PropertyCard';
 import { Property } from '../../types/Property';
 import propertiesData from '../../data/properties.json';
-import BaseMap from '../BaseMap';
+import BaseMap from '../../components/BaseMap';
 import { SearchState } from '../../App';
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 interface PropertyListingsPageProps {
   search: SearchState;
