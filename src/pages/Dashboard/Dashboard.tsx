@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import UserProfiles from '../UserProfiles';
-import PropertyCard from '../PropertyCard/PropertyCard';
+import UserProfiles from '../../components/UserProfiles';
+import PropertyCard from '../../components/PropertyCard/PropertyCard';
 import { Property } from '../../types/Property';
 import propertiesData from '../../data/properties.json';
 import styles from './Dashboard.module.scss';
-import { useAuth } from '../AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 // Mock favorite property IDs and saved search property IDs
 const mockFavoriteIds = ['1', '3'];

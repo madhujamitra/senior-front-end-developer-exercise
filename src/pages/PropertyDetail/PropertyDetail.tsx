@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import propertiesData from '../../data/properties.json';
 import { Property } from '../../types/Property';
 import styles from './PropertyDetail.module.scss';
-import Button from '../Button';
+import Button from '../../components/Button';
 import redPrimary from '../../styles/variables.module.scss';
 
 const PropertyDetail: React.FC = () => {

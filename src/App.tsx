@@ -4,14 +4,12 @@ import { useState } from 'react';
 import Header from './components/Header'
 import Footer from './components/Footer'
 import UserProfiles from './components/UserProfiles'
-
-import PropertyData from './components/PropertyData';
-import PropertyListingsPage from './components/PropertyListingsPage/PropertyListingsPage';
-import PropertyDetail from './components/PropertyDetail/PropertyDetail';
-import Dashboard from './components/Dashboard/Dashboard';
-import { AuthProvider } from './components/AuthContext';
+import PropertyListingsPage from './pages/PropertyListingsPage/PropertyListingsPage';
+import PropertyDetail from './pages/PropertyDetail/PropertyDetail';
+import Dashboard from './pages/Dashboard/Dashboard';
+import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
-import Login from './components/Login';
+import Login from './pages/Login';
 
 
 export interface SearchState {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useAuth } from './AuthContext';
+import { useAuth } from '../context/AuthContext';
 import { useHistory } from 'react-router-dom';
-import Button from './Button';
+import Button from '../components/Button';
 import '../components/styles.css';
 
 const Login: React.FC = () => {
