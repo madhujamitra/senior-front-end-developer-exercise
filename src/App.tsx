@@ -4,12 +4,12 @@ import { useState } from 'react';
 import Header from './components/Header'
 import Footer from './components/Footer'
 import UserProfiles from './components/UserProfiles'
-import PropertyListingsPage from './pages/PropertyListingsPage/PropertyListingsPage';
 import PropertyDetail from './pages/PropertyDetail/PropertyDetail';
 import Dashboard from './pages/Dashboard/Dashboard';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
+import PropertyListing from './pages/PropertyListing/PropertyListing';
 
 
 export interface SearchState {
@@ -28,7 +28,7 @@ function App() {
          
           <Route path='/user-profiles' component={UserProfiles} />
           <Route path='/property/:id' component={PropertyDetail} />
-          <Route path="/" exact render={() => <PropertyListingsPage search={search} />} />
+          <Route path="/" exact render={() => <PropertyListing search={search} />} />
           <Route path='/login' component={Login} />
           <ProtectedRoute path='/dashboard' component={Dashboard} />
           

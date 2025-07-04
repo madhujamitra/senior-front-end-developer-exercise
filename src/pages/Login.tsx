@@ -156,7 +156,7 @@ const Login: React.FC = () => {
             />
           </div>
 
-          {error ? <div className="login-error">{error}</div> : <span className="field-error-placeholder"></span>}
+          {error ? <div className="login-error">{error}</div> : <span className="login-error-placeholder"></span>}
           
           <Button
             text={isSubmitting ? "Logging in..." : "Log in"}

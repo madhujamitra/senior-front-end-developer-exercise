@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from './PropertyListingsPage.module.scss';
+import styles from './PropertyListing.module.scss';
 import PropertyCard from '../../components/PropertyCard/PropertyCard';
 import { Property } from '../../types/Property';
 import propertiesData from '../../data/properties.json';
@@ -8,11 +8,11 @@ import { SearchState } from '../../App';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
-interface PropertyListingsPageProps {
+interface PropertyListingProps {
   search: SearchState;
 }
 
-const PropertyListingsPage: React.FC<PropertyListingsPageProps> = ({ search }) => {
+const PropertyListing: React.FC<PropertyListingProps> = ({ search }) => {
   const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -68,4 +68,4 @@ const PropertyListingsPage: React.FC<PropertyListingsPageProps> = ({ search }) =
   );
 };
 
-export default PropertyListingsPage; 
+export default PropertyListing; 
