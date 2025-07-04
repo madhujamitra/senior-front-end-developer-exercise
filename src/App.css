@@ -9,6 +9,18 @@ body {
   padding: 0px 30px;
 }
 
+@media (max-width: 600px) {
+  .container {
+    padding: 0px 10px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .container {
+    padding: 0px 20px;
+  }
+}
+
 .header {
   display: flex;
   justify-content: space-between;

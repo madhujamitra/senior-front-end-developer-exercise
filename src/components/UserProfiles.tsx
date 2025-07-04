@@ -1,37 +1,31 @@
-import { useState, useEffect } from 'react'
-import MyDropzone from './MyDropzone'
-import axios from 'axios'
+import { useEffect } from 'react'
+
 import './styles.css'
 
-function UserProfiles() {
-    const [userProfiles, setUserProfiles] = useState([]);
+ // Use the provided image URL
 
-    const fetchUserProfiles = () => {
-        axios.get("http://localhost:8080/api/v1/user-profile").then(res => {
-            console.log(res);
-            setUserProfiles(res.data);
-        });
-    }
+interface UserProfile {
+  userProfileID: string;
+  username: string;
+  firstName?: string;
+  lastName?: string;
+  email: string;
+  profileImage: string;
+  bio?: string;
+}
 
-    useEffect(() => {
-        fetchUserProfiles();
-    }, []) //if anything changes trigger again    
-
+function UserProfiles({ user }: { user: UserProfile }) {
+    useEffect(() => {}, [user]);
     return (
-        <>
-            {userProfiles.map((userProfile: any, index) => (
-                <div key={index} className="user-profile">
-                    {userProfile.userProfileID
-                        && <img src={`http://localhost:8080/api/v1/user-profile/${userProfile.userProfileID}/image/download`} alt="profile" />}
-                    <br />
-                    <br />
-                    <h1>{userProfile.username}</h1>
-                    <p>{userProfile.userProfileID}</p>
-                    <MyDropzone {...userProfile} />
-                    <br />
-                </div>
-            ))}
-        </>
+        <div className="user-profile">
+            <img src={user.profileImage} alt="profile" />
+            <br />
+            <br />
+            <h1>{user.firstName && user.lastName ? `${user.firstName} ${user.lastName}` : user.username}</h1>
+            {user.bio && <p className="bio">{user.bio}</p>}
+
+            <br />
+        </div>
     )
 }
 

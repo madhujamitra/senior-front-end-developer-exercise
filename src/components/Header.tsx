@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory, Link } from 'react-router-dom'
 import Button from './Button'
-import { Link } from 'react-router-dom'
 import SearchBar from './SearchBar/SearchBar'
 import { SearchState } from '../App'
-
+import { useAuth } from './AuthContext';
+import React from 'react';
 
 /*interface Props {
     title?: string
@@ -20,8 +20,12 @@ interface HeaderProps {
 }
 
 const Header = ({ title, onAdd, showAdd, search, setSearch }: HeaderProps) => {
-
     const location = useLocation();
+    const history = useHistory();
+    const { user, logout } = useAuth();
+
+    const handleLogout = () => logout();
+    const handleDashboard = () => history.push('/dashboard');
 
     return (
         <header className="header">
@@ -33,10 +37,17 @@ const Header = ({ title, onAdd, showAdd, search, setSearch }: HeaderProps) => {
             <SearchBar search={search} setSearch={setSearch} />
             <div>
                 <span>Create a Listing | Live Chat | FAQ | Contact</span>
-                {location.pathname === '/' && <Button color={showAdd ? 'red' : 'green'}
-                    text={showAdd ? 'Close' : 'Login'} onClick={onAdd} />}
+                {!user ? (
+                    <Link to="/login" style={{ textDecoration: 'none' }}>
+                        <Button color="green" text="Login" onClick={() => {}} />
+                    </Link>
+                ) : (
+                    <>
+                        <Button color="#bc3b3b" text="Dashboard" onClick={handleDashboard} />
+                        <Button color="#888" text="Logout" onClick={handleLogout} />
+                    </>
+                )}
             </div>
-
         </header>
     )
 };

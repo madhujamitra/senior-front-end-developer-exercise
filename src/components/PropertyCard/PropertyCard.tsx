@@ -4,11 +4,12 @@ import { Property } from '../../types/Property';
 
 interface PropertyCardProps {
   property: Property;
+  className?: string;
 }
 
-const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
+const PropertyCard: React.FC<PropertyCardProps> = ({ property, className = '' }) => {
   return (
-    <div className={styles['property-card']}>
+    <div className={`${styles['property-card']} ${className}`.trim()}>
       <img className={styles['property-card__image']} src={property.image} alt={property.title} />
       <div className={styles['property-card__info']}>
         <h3 className={styles['property-card__title']}>{property.title}</h3>
