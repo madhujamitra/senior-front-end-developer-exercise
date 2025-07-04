@@ -6,4 +6,4 @@ services:
       - "3000:5000"
     container_name: frontend-app
     restart: unless-stopped 
-    
+ 

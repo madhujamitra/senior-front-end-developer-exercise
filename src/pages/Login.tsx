@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useHistory } from 'react-router-dom';
 import Button from '../components/Button';
 import '../components/styles.css';
+
+interface ValidationState {
+  isValid: boolean;
+  message: string;
+  showMessage: boolean;
+}
 
 const Login: React.FC = () => {
   const { login } = useAuth();
@@ -10,16 +16,92 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Validation states
+  const [emailValidation, setEmailValidation] = useState<ValidationState>({
+    isValid: false,
+    message: '',
+    showMessage: false
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const success = login(username, password);
-    if (!success) {
-      setError('Invalid username or password');
-    } else {
-      setError('');
-      history.push('/dashboard');
+  
+  // Focus states
+  const [emailFocused, setEmailFocused] = useState(false);
+  const [passwordFocused, setPasswordFocused] = useState(false);
+
+  // Email validation function
+  const validateEmail = (email: string): ValidationState => {
+    if (!email) {
+      return { isValid: false, message: '', showMessage: false };
     }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValid = emailRegex.test(email);
+    
+    if (!isValid) {
+      return { 
+        isValid: false, 
+        message: 'Please enter a valid email address', 
+        showMessage: true 
+      };
+    }
+    
+    return { 
+      isValid: true, 
+      message: '', 
+      showMessage: false 
+    };
+  };
+
+  // Real-time validation effects
+  useEffect(() => {
+    const validation = validateEmail(username);
+    setEmailValidation(validation);
+  }, [username]);
+
+
+  // Get input class names based on validation state
+  const getInputClassName = (isValid: boolean, isFocused: boolean, hasValue: boolean) => {
+    let className = 'login-input';
+    
+    if (isFocused) {
+      className += ' focused';
+    } else if (hasValue) {
+      className += isValid ? ' valid' : ' invalid';
+    }
+    
+    return className;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validate email field before submission
+    const emailValid = validateEmail(username);
+    
+    setEmailValidation({ ...emailValid, showMessage: true });
+    
+    if (!emailValid.isValid || !password) {
+      setError('Please enter a valid email and password');
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setError('');
+    
+    // Simulate API call delay
+    setTimeout(() => {
+      const success = login(username, password);
+      setIsSubmitting(false);
+      
+      if (!success) {
+        setError('Invalid username or password');
+      } else {
+        setError('');
+        history.push('/dashboard');
+      }
+    }, 1000);
   };
 
   return (
@@ -31,40 +113,62 @@ const Login: React.FC = () => {
         </div>
         <form onSubmit={handleSubmit}>
           <div className="login-field">
-            <label>
+            <label htmlFor="email">
               Email<span className="login-required">*</span>
             </label>
             <input
-              type="text"
-              placeholder="Email"
+              id="email"
+              type="email"
+              placeholder="Enter your email"
               value={username}
               onChange={e => setUsername(e.target.value)}
+              onFocus={() => setEmailFocused(true)}
+              onBlur={() => setEmailFocused(false)}
               required
-              className="login-input"
+              className={getInputClassName(emailValidation.isValid, emailFocused, !!username)}
+              autoComplete="email"
             />
+
+                          {emailValidation.showMessage && !emailValidation.isValid ? (
+                <span className="field-error">
+                  {emailValidation.message}
+                </span>
+              ) : (
+                <span className="field-error-placeholder"></span>
+              )}
           </div>
+          
           <div className="login-field">
-            <label>
+            <label htmlFor="password">
               Password<span className="login-required">*</span>
             </label>
             <input
+              id="password"
               type="password"
-              placeholder="Password"
+              placeholder="Enter your password"
               value={password}
               onChange={e => setPassword(e.target.value)}
+              onFocus={() => setPasswordFocused(true)}
+              onBlur={() => setPasswordFocused(false)}
               required
-              className="login-input"
+              className={passwordFocused ? "login-input focused" : "login-input"}
+              autoComplete="current-password"
             />
           </div>
 
-          {error && <div className="login-error">{error}</div>}
+          {error ? <div className="login-error">{error}</div> : <span className="login-error-placeholder"></span>}
+          
           <Button
-            text="Log in"
+            text={isSubmitting ? "Logging in..." : "Log in"}
             color="#bc3b3b"
             onClick={() => {}}
             className="login-btn"
           />
-          <input type="submit" style={{ display: 'none' }} disabled={!username || !password} />
+          <input 
+            type="submit" 
+            style={{ display: 'none' }} 
+            disabled={!emailValidation.isValid || !password || isSubmitting} 
+          />
         </form>
       </div>
     </div>

@@ -1,3 +1,31 @@
+/* ==========================================================================
+   GLOBAL STYLES
+   ========================================================================== */
+
+/* Global box-sizing reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Global link styles */
+a {
+  text-decoration: none;
+  color: #bc3b3b;
+  line-height: 1.4;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+h1 a {
+  color: black !important;
+}
+
+/* ==========================================================================
+   REACT APP STYLES
+   ========================================================================== */
+
 .App {
   text-align: center;
 }
@@ -37,25 +65,30 @@
   }
 }
 
+/* ==========================================================================
+   USER PROFILE STYLES
+   ========================================================================== */
 
-
-.user-profile img{
+.user-profile img {
   width: 200px;
   height: 200px;
   object-fit: cover;
   border-radius: 50%;
 }
 
+/* ==========================================================================
+   MAP STYLES
+   ========================================================================== */
 
-/* MAPS */
-.map-container{
-  display:flex;
+.map-container {
+  display: flex;
   position: relative;
 }
-.map { 
+
+.map {
   width: 100%;
-  height: calc(100vh - 200px); /*without this the map doesn't show anything*/
-}		
+  height: calc(100vh - 200px);
+}
 
 .leaflet-container {
   height: inherit;
@@ -73,15 +106,13 @@
   width: 30px !important;
   height: 30px !important;
   background-color: rgba(110, 204, 57);
-    box-shadow: 0px 0px 10px green;
+  box-shadow: 0px 0px 10px green;
   text-align: center;
   font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
   background-clip: padding-box;
-      border-radius: 20px;
+  border-radius: 20px;
   line-height: 30px;
   cursor: pointer;
-
-
   background-image: url(https://rentitfurnished.com/vancouver/wp-content/plugins/facetwp-map-facet-cf/assets/img/cluster40.png);
   background-position: center;
   box-shadow: 0px 0px 10px red;
@@ -89,10 +120,10 @@
   position: absolute;
   font-size: 11px;
   font-family: Arial, sans-serif;
-  font-weight: bold;		
+  font-weight: bold;
 }
 
-.property-price{
+.property-price {
   background-color: #bc3b3b;
   border-radius: 4px;
   color: #fff;
@@ -102,14 +133,14 @@
   text-align: center;
   text-decoration: none;
   box-shadow: 0 3px 2px rgb(0 0 0 / 30%);
-  background-image: linear-gradient(to bottom,#000 .2,#000 0);
+  background-image: linear-gradient(to bottom, #000 0.2, #000 0);
   background-repeat: repeat-x;
   position: relative;
   display: block;
   width: fit-content;
 }
 
-.arrow{
+.arrow {
   border-top-color: #bc3b3b;
   border-right-color: transparent;
   border-bottom-color: transparent;
@@ -121,15 +152,17 @@
   height: 0;
   position: absolute;
   width: 0;
-  transform: translateX(-50%);	
+  transform: translateX(-50%);
 }
+
+/* Google Maps Info Window Styles */
 .gm-style .gm-style-iw-c {
   position: absolute;
   box-sizing: border-box;
   overflow: hidden;
   top: 0;
   left: 0;
-  transform: translate(-50%,-100%);
+  transform: translate(-50%, -100%);
   background-color: white;
   border-radius: 8px;
   padding: 12px;
@@ -144,39 +177,28 @@
 .gm-style .gm-style-iw-d {
   box-sizing: border-box;
   overflow: auto;
-  overflow: scroll;
-    max-height: 269px;
+  max-height: 269px;
 }
+
 .infowindow-content {
   width: 250px;
-  line-height: .9;
+  line-height: 0.9;
   overflow: none;
 }
+
 .infowindow-content p {
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   text-align: left;
 }
+
 .infowindow-content .infowindow-image img {
   width: 250px;
   max-width: none;
   display: block;
-    height: auto;
+  height: auto;
 }
 
-a{
-  text-decoration: none;
-  color: #bc3b3b !important;
-  line-height: 13px;
-}
-
-h1 a {
-  color: black !important;
-}
-
-a:hover{
-  opacity: .7;
-}
-
+/* Map Search Button */
 #search-on-map-move {
   padding: 10px;
   border: 1px solid gray;
@@ -190,13 +212,15 @@ a:hover{
   box-shadow: 0px 0px 6px red;
 }
 
+/* Map Widget */
 #local-content-widget {
   max-width: 100%;
   height: 100vh;
   margin: 0 auto;
 }
 
-#loading{
+/* Loading Animation */
+#loading {
   background-image: url('https://img1.picmix.com/output/stamp/normal/8/5/2/9/509258_fb107.gif');
   width: 120px;
   height: 120px;
@@ -208,27 +232,40 @@ a:hover{
   top: 30%;
 }
 
+/* ==========================================================================
+   LOGIN FORM STYLES
+   ========================================================================== */
+
 .login-bg {
-  min-height: 100vh;
+  padding: 7rem 0 14rem;
   background: #fafaf8;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
 .login-container {
   width: 100%;
   max-width: 500px;
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   padding: 2.5rem 2rem;
   margin: 2rem 0;
 }
+
 .login-header {
   text-align: center;
   margin-bottom: 32px;
 }
+
+.login-header h2 {
+  font-weight: 400;
+  font-size: 2rem;
+  margin: 0;
+}
+
 .login-underline {
   width: 60px;
   height: 4px;
@@ -236,22 +273,22 @@ a:hover{
   margin: 0 auto 16px auto;
   border-radius: 2px;
 }
-.login-header h2 {
-  font-weight: 400;
-  font-size: 2rem;
-  margin: 0;
-}
+
 .login-field {
+  position: relative;
   margin-bottom: 24px;
 }
+
 .login-field label {
   display: block;
   margin-bottom: 6px;
   font-weight: 500;
 }
+
 .login-required {
   color: #bc3b3b;
 }
+
 .login-input {
   width: 100%;
   padding: 1rem;
@@ -262,19 +299,16 @@ a:hover{
   outline: none;
   margin-bottom: 2px;
 }
-.login-forgot {
-  margin-bottom: 24px;
+
+.login-input.invalid {
+  border: 2px solid #bc3b3b;
+  background: #fff8f8;
 }
-.login-forgot a {
-  color: #222;
-  font-size: 0.98rem;
-  text-decoration: underline;
+
+.login-input.focused {
+  background: #fafaf8;
 }
-.login-error {
-  color: #bc3b3b;
-  margin-bottom: 16px;
-  text-align: center;
-}
+
 .login-btn {
   width: 100%;
   padding: 1rem;
@@ -285,12 +319,189 @@ a:hover{
   font-size: 1.1rem;
   font-weight: 500;
   cursor: pointer;
-  opacity: 1;
-  margin-top: 8px;
-  margin-bottom: 0;
-  transition: opacity 0.2s;
+  margin: 0;
+
 }
-.login-btn[disabled], .login-btn:disabled {
+
+.login-btn:hover {
+  background: #a13333;
+ 
+}
+
+.login-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(188, 59, 59, 0.3);
+}
+
+.login-btn:disabled,
+.login-btn[disabled] {
   opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.login-btn:disabled:hover,
+.login-btn[disabled]:hover {
+  background: #bc3b3b;
+  transform: none;
+  box-shadow: none;
+}
+
+.login-error {
+  color: #bc3b3b;
+  font-size: 0.7rem;
+  margin-bottom: 16px;
+  text-align: center;
+  height: 16px;
+  line-height: 16px;
+}
+
+.login-error-placeholder {
+  height: 16px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.login-forgot {
+  margin-bottom: 24px;
+}
+
+.login-forgot a {
+  color: #222;
+  font-size: 0.98rem;
+  text-decoration: underline;
+}
+
+/* Form Validation Styles */
+.field-error {
+  color: #bc3b3b;
+  font-size: 0.7rem;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  display: block;
+  height: 10px;
+  line-height: 10px;
+}
+
+.field-error-placeholder {
+  height: 10px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* ==========================================================================
+   RESPONSIVE STYLES
+   ========================================================================== */
+
+/* Tablet styles (768px and below) */
+@media (max-width: 768px) {
+  .login-bg {
+    padding: 4rem 1rem 8rem;
+  }
+  
+  .login-container {
+    max-width: 450px;
+    padding: 2.5rem 2rem;
+    margin: 1.5rem 0;
+  }
+  
+  .login-header h2 {
+    font-size: 1.75rem;
+  }
+  
+  .login-input {
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .login-btn {
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+/* Mobile styles (480px and below) */
+@media (max-width: 480px) {
+  .login-bg {
+    padding: 2rem 0.75rem 4rem;
+  }
+  
+  .login-container {
+    max-width: 100%;
+    padding: 2rem 1.5rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+  }
+  
+  .login-header {
+    margin-bottom: 32px;
+  }
+  
+  .login-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .login-underline {
+    width: 50px;
+    height: 3px;
+    margin: 0 auto 12px auto;
+  }
+  
+  .login-field {
+    margin-bottom: 24px;
+  }
+  
+  .login-field label {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+  }
+  
+  .login-input {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .login-btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .login-error {
+    font-size: 0.7rem;
+    margin-bottom: 12px;
+    height: 14px;
+    line-height: 14px;
+  }
+  
+  .login-error-placeholder {
+    height: 14px;
+    margin-bottom: 12px;
+  }
+}
+
+/* Small mobile styles (320px and below) */
+@media (max-width: 320px) {
+  .login-bg {
+    padding: 1.5rem 0.5rem 3rem;
+  }
+  
+  .login-container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .login-header h2 {
+    font-size: 1.25rem;
+  }
+  
+  .login-input {
+    padding: 0.625rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .login-btn {
+    padding: 0.625rem 1rem;
+    font-size: 0.9rem;
+  }
 }

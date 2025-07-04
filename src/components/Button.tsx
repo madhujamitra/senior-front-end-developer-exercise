@@ -1,15 +1,14 @@
-
 interface ButtonProps {
     text: string,
     color?: string,
     className?: string,
     onClick: () => void,
 }
-const Button = ({ color, text, onClick }: ButtonProps) => {
+const Button = ({ color, text, onClick, className }: ButtonProps) => {
     return (
         <button
             onClick={onClick}
-            className="btn"
+            className={`btn ${className || ''}`}
             style={{ backgroundColor: color }}>
             {text}
         </button>
