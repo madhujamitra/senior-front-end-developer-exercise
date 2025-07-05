@@ -2,7 +2,22 @@
   {
     "id": "1",
     "title": "Modern Apartment in Downtown",
-    "image": "/images/property1.jpg",
+    "image": "/images/properties/small/small_IMG_6186_FIX_2_43eb20e4bd.webp",
+    "thumbnail": "/images/properties/small/small_IMG_6186_FIX_2_43eb20e4bd.webp",
+    "images": {
+      "small": [
+        "/images/properties/small/small_IMG_6186_FIX_2_43eb20e4bd.webp",
+        "/images/properties/small/small_IMG_6189_FIX_2_60afd5b413.webp",
+        "/images/properties/small/small_1859_1ee243bbe1.webp",
+        "/images/properties/small/1205-Howe-Street-703-8-300x200.webp"
+      ],
+      "large": [
+        "/images/properties/large/large_IMG_6186_FIX_2_43eb20e4bd.webp",
+        "/images/properties/large/large_IMG_6194_FIX_2_0900c85b67.webp",
+        "/images/properties/large/large_46460_4_870a1f12c3.webp",
+        "/images/properties/large/large_46460_6_bb04eeb47c.webp"
+      ]
+    },
     "price": 2500,
     "location": "Downtown",
     "bedrooms": 2,
@@ -14,7 +29,23 @@
   {
     "id": "2",
     "title": "Cozy Suburban House",
-    "image": "/images/property2.jpg",
+    "image": "/images/properties/small/small_IMG_6189_FIX_2_60afd5b413.webp",
+    "thumbnail": "/images/properties/small/small_IMG_6189_FIX_2_60afd5b413.webp",
+    "images": {
+      "small": [
+        "/images/properties/small/small_IMG_6189_FIX_2_60afd5b413.webp",
+        "/images/properties/small/small_IMG_6186_FIX_2_43eb20e4bd.webp",
+        "/images/properties/small/1205-Howe-Street-703-9-300x199.webp",
+        "/images/properties/small/small_1859_1ee243bbe1.webp",
+        "/images/properties/small/1205-Howe-Street-703-8-300x200.webp"
+      ],
+      "large": [
+        "/images/properties/large/large_IMG_6194_FIX_2_0900c85b67.webp",
+        "/images/properties/large/large_IMG_6186_FIX_2_43eb20e4bd.webp",
+        "/images/properties/large/large_46460_6_bb04eeb47c.webp",
+        "/images/properties/large/large_46460_4_870a1f12c3.webp"
+      ]
+    },
     "price": 3200,
     "location": "Suburbia",
     "bedrooms": 3,
@@ -26,7 +57,20 @@
   {
     "id": "3",
     "title": "Luxury Condo with City View",
-    "image": "/images/property3.jpg",
+    "image": "/images/properties/small/small_1859_1ee243bbe1.webp",
+    "thumbnail": "/images/properties/small/small_1859_1ee243bbe1.webp",
+    "images": {
+      "small": [
+        "/images/properties/small/small_1859_1ee243bbe1.webp",
+        "/images/properties/small/1205-Howe-Street-703-8-300x200.webp",
+        "/images/properties/small/small_IMG_6186_FIX_2_43eb20e4bd.webp"
+      ],
+      "large": [
+        "/images/properties/large/large_46460_4_870a1f12c3.webp",
+        "/images/properties/large/large_46460_6_bb04eeb47c.webp",
+        "/images/properties/large/large_IMG_6186_FIX_2_43eb20e4bd.webp"
+      ]
+    },
     "price": 4000,
     "location": "Uptown",
     "bedrooms": 2,
@@ -38,7 +82,22 @@
   {
     "id": "4",
     "title": "Family Home Near Park",
-    "image": "/images/property4.jpg",
+    "image": "/images/properties/small/1205-Howe-Street-703-8-300x200.webp",
+    "thumbnail": "/images/properties/small/1205-Howe-Street-703-8-300x200.webp",
+    "images": {
+      "small": [
+        "/images/properties/small/1205-Howe-Street-703-8-300x200.webp",
+        "/images/properties/small/1205-Howe-Street-703-9-300x199.webp",
+        "/images/properties/small/small_IMG_6189_FIX_2_60afd5b413.webp",
+        "/images/properties/small/small_1859_1ee243bbe1.webp"
+      ],
+      "large": [
+        "/images/properties/large/large_46460_6_bb04eeb47c.webp",
+        "/images/properties/large/large_IMG_6194_FIX_2_0900c85b67.webp",
+        "/images/properties/large/large_IMG_6186_FIX_2_43eb20e4bd.webp",
+        "/images/properties/large/large_46460_4_870a1f12c3.webp"
+      ]
+    },
     "price": 2800,
     "location": "Greenfield",
     "bedrooms": 4,
@@ -50,7 +109,23 @@
   {
     "id": "5",
     "title": "Chic Loft in Arts District",
-    "image": "/images/property5.jpg",
+    "image": "/images/properties/small/1205-Howe-Street-703-9-300x199.webp",
+    "thumbnail": "/images/properties/small/1205-Howe-Street-703-9-300x199.webp",
+    "images": {
+      "small": [
+        "/images/properties/small/1205-Howe-Street-703-9-300x199.webp",
+        "/images/properties/small/small_IMG_6186_FIX_2_43eb20e4bd.webp",
+        "/images/properties/small/small_IMG_6189_FIX_2_60afd5b413.webp",
+        "/images/properties/small/small_1859_1ee243bbe1.webp",
+        "/images/properties/small/1205-Howe-Street-703-8-300x200.webp"
+      ],
+      "large": [
+        "/images/properties/large/large_IMG_6186_FIX_2_43eb20e4bd.webp",
+        "/images/properties/large/large_IMG_6194_FIX_2_0900c85b67.webp",
+        "/images/properties/large/large_46460_4_870a1f12c3.webp",
+        "/images/properties/large/large_46460_6_bb04eeb47c.webp"
+      ]
+    },
     "price": 2200,
     "location": "Arts District",
     "bedrooms": 1,
@@ -62,7 +137,20 @@
   {
     "id": "6",
     "title": "Townhouse with Private Patio",
-    "image": "/images/property6.jpg",
+    "image": "/images/properties/small/small_IMG_6186_FIX_2_43eb20e4bd.webp",
+    "thumbnail": "/images/properties/small/small_IMG_6186_FIX_2_43eb20e4bd.webp",
+    "images": {
+      "small": [
+        "/images/properties/small/small_IMG_6186_FIX_2_43eb20e4bd.webp",
+        "/images/properties/small/small_1859_1ee243bbe1.webp",
+        "/images/properties/small/1205-Howe-Street-703-8-300x200.webp"
+      ],
+      "large": [
+        "/images/properties/large/large_IMG_6186_FIX_2_43eb20e4bd.webp",
+        "/images/properties/large/large_46460_4_870a1f12c3.webp",
+        "/images/properties/large/large_46460_6_bb04eeb47c.webp"
+      ]
+    },
     "price": 3100,
     "location": "Westside",
     "bedrooms": 3,
@@ -74,7 +162,18 @@
   {
     "id": "7",
     "title": "Affordable Studio",
-    "image": "/images/property7.jpg",
+    "image": "/images/properties/small/small_IMG_6189_FIX_2_60afd5b413.webp",
+    "thumbnail": "/images/properties/small/small_IMG_6189_FIX_2_60afd5b413.webp",
+    "images": {
+      "small": [
+        "/images/properties/small/small_IMG_6189_FIX_2_60afd5b413.webp",
+        "/images/properties/small/1205-Howe-Street-703-9-300x199.webp"
+      ],
+      "large": [
+        "/images/properties/large/large_IMG_6194_FIX_2_0900c85b67.webp",
+        "/images/properties/large/large_46460_6_bb04eeb47c.webp"
+      ]
+    },
     "price": 1500,
     "location": "Midtown",
     "bedrooms": 0,
@@ -86,7 +185,23 @@
   {
     "id": "8",
     "title": "Penthouse Suite",
-    "image": "/images/property8.jpg",
+    "image": "/images/properties/small/small_1859_1ee243bbe1.webp",
+    "thumbnail": "/images/properties/small/small_1859_1ee243bbe1.webp",
+    "images": {
+      "small": [
+        "/images/properties/small/small_1859_1ee243bbe1.webp",
+        "/images/properties/small/small_IMG_6186_FIX_2_43eb20e4bd.webp",
+        "/images/properties/small/small_IMG_6189_FIX_2_60afd5b413.webp",
+        "/images/properties/small/1205-Howe-Street-703-8-300x200.webp",
+        "/images/properties/small/1205-Howe-Street-703-9-300x199.webp"
+      ],
+      "large": [
+        "/images/properties/large/large_46460_4_870a1f12c3.webp",
+        "/images/properties/large/large_IMG_6186_FIX_2_43eb20e4bd.webp",
+        "/images/properties/large/large_IMG_6194_FIX_2_0900c85b67.webp",
+        "/images/properties/large/large_46460_6_bb04eeb47c.webp"
+      ]
+    },
     "price": 6000,
     "location": "Downtown",
     "bedrooms": 3,
@@ -98,7 +213,22 @@
   {
     "id": "9",
     "title": "Historic Home with Charm",
-    "image": "/images/property9.jpg",
+    "image": "/images/properties/small/1205-Howe-Street-703-8-300x200.webp",
+    "thumbnail": "/images/properties/small/1205-Howe-Street-703-8-300x200.webp",
+    "images": {
+      "small": [
+        "/images/properties/small/1205-Howe-Street-703-8-300x200.webp",
+        "/images/properties/small/small_IMG_6186_FIX_2_43eb20e4bd.webp",
+        "/images/properties/small/small_1859_1ee243bbe1.webp",
+        "/images/properties/small/1205-Howe-Street-703-9-300x199.webp"
+      ],
+      "large": [
+        "/images/properties/large/large_46460_6_bb04eeb47c.webp",
+        "/images/properties/large/large_IMG_6186_FIX_2_43eb20e4bd.webp",
+        "/images/properties/large/large_46460_4_870a1f12c3.webp",
+        "/images/properties/large/large_IMG_6194_FIX_2_0900c85b67.webp"
+      ]
+    },
     "price": 2700,
     "location": "Old Town",
     "bedrooms": 3,
@@ -110,7 +240,20 @@
   {
     "id": "10",
     "title": "Eco-Friendly Apartment",
-    "image": "/images/property10.jpg",
+    "image": "/images/properties/small/small_IMG_6189_FIX_2_60afd5b413.webp",
+    "thumbnail": "/images/properties/small/small_IMG_6189_FIX_2_60afd5b413.webp",
+    "images": {
+      "small": [
+        "/images/properties/small/small_IMG_6189_FIX_2_60afd5b413.webp",
+        "/images/properties/small/small_1859_1ee243bbe1.webp",
+        "/images/properties/small/1205-Howe-Street-703-9-300x199.webp"
+      ],
+      "large": [
+        "/images/properties/large/large_IMG_6194_FIX_2_0900c85b67.webp",
+        "/images/properties/large/large_46460_4_870a1f12c3.webp",
+        "/images/properties/large/large_IMG_6186_FIX_2_43eb20e4bd.webp"
+      ]
+    },
     "price": 2300,
     "location": "Eco Park",
     "bedrooms": 2,

@@ -76,7 +76,7 @@ const Dashboard: React.FC = () => {
           ) : (
             favoriteProperties.map(property => (
               <div key={property.id} style={{ position: 'relative', marginBottom: '1rem' }}>
-                <PropertyCard property={property} className={styles['property-card--dashboard']} />
+                <PropertyCard property={property} />
                 <div style={{ position: 'absolute', top: 10, right: 10, zIndex: 2 }}>
                   <FavoriteIcon
                     active={favoriteIds.includes(property.id)}
@@ -96,7 +96,7 @@ const Dashboard: React.FC = () => {
           ) : (
             savedSearchProperties.map(property => (
               <div key={property.id} style={{ position: 'relative', marginBottom: '1rem' }}>
-                <PropertyCard property={property} className={styles['property-card--dashboard']} />
+                <PropertyCard property={property} />
                 <div style={{ position: 'absolute', top: 10, right: 10, zIndex: 2 }}>
                   <FavoriteIcon
                     active={favoriteIds.includes(property.id)}
