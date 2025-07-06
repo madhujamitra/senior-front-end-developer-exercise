@@ -26,6 +26,7 @@ interface AuthContextType {
   user: UserProfile | null;
   login: (email: string, password: string) => boolean;
   logout: () => void;
+  updateUserFavorites: (favorites: string[]) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -57,10 +58,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       (u) => u.email === email && u.password === password
     );
     if (found) {
-      setUser(found);
+      // Check if user has favorites in localStorage from previous sessions
+      const storedUserKey = `${USER_KEY}_${found.userProfileID}`;
+      const storedUser = localStorage.getItem(storedUserKey);
+      
+      let userToSet = found;
+      if (storedUser) {
+        const parsedStoredUser = JSON.parse(storedUser);
+        // Merge favorites from localStorage with JSON favorites
+        const allFavorites = [...found.favorites, ...parsedStoredUser.favorites];
+        const mergedFavorites = Array.from(new Set(allFavorites));
+        userToSet = { ...found, favorites: mergedFavorites };
+      }
+      
+      setUser(userToSet);
       // Generate a mock token (could be a random string)
       const token = `${found.userProfileID}-${Date.now()}`;
-      localStorage.setItem(USER_KEY, JSON.stringify(found));
+      localStorage.setItem(USER_KEY, JSON.stringify(userToSet));
+      localStorage.setItem(storedUserKey, JSON.stringify(userToSet));
       localStorage.setItem(TOKEN_KEY, token);
       return true;
     }
@@ -73,8 +88,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem(TOKEN_KEY);
   };
 
+  const updateUserFavorites = (favorites: string[]) => {
+    if (user) {
+      const updatedUser = { ...user, favorites };
+      setUser(updatedUser);
+      const storedUserKey = `${USER_KEY}_${user.userProfileID}`;
+      localStorage.setItem(USER_KEY, JSON.stringify(updatedUser));
+      localStorage.setItem(storedUserKey, JSON.stringify(updatedUser));
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, updateUserFavorites }}>
       {children}
     </AuthContext.Provider>
   );

@@ -12,7 +12,7 @@ interface FavoritesContextType {
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
 
 export const FavoritesProvider = ({ children }: { children: ReactNode }) => {
-  const { user } = useAuth();
+  const { user, updateUserFavorites } = useAuth();
   const [favorites, setFavorites] = useState<string[]>([]);
 
   // Load favorites from user profile when user changes
@@ -30,8 +30,8 @@ export const FavoritesProvider = ({ children }: { children: ReactNode }) => {
     setFavorites(prev => {
       if (!prev.includes(propertyId)) {
         const newFavorites = [...prev, propertyId];
-        // In a real app, you would update the user profile on the server here
-        // For now, we'll just update the local state
+        // Update the user profile with new favorites
+        updateUserFavorites(newFavorites);
         console.log(`Added property ${propertyId} to favorites for user ${user.userProfileID}`);
         return newFavorites;
       }
@@ -44,8 +44,8 @@ export const FavoritesProvider = ({ children }: { children: ReactNode }) => {
     
     setFavorites(prev => {
       const newFavorites = prev.filter(id => id !== propertyId);
-      // In a real app, you would update the user profile on the server here
-      // For now, we'll just update the local state
+      // Update the user profile with new favorites
+      updateUserFavorites(newFavorites);
       console.log(`Removed property ${propertyId} from favorites for user ${user.userProfileID}`);
       return newFavorites;
     });
