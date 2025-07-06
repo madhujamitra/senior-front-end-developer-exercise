@@ -21,7 +21,7 @@
 
   &__property-list {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 1.2rem;
     overflow-x: auto;
     padding-bottom: 0.5rem;
@@ -95,22 +95,22 @@
 
 .property-card--dashboard {
   width: 340px;
-  max-height: 380px;
+  min-height: 380px;
  
  }
  
  @media (min-width: 600px) {
    .property-card--dashboard {
-    width: 320px;
-    max-height: 380px;
+    width: 360px;
+    min-height: 400px;
     
    }
  }
  
  @media (min-width: 900px) {
    .property-card--dashboard {
-     width: 300px;
-     max-height: 320px;
+     width: 380px;
+     max-height: 0px;
    
    }
  } 

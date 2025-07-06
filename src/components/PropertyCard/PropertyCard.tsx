@@ -6,9 +6,10 @@ import styles from './PropertyCard.module.scss';
 
 interface PropertyCardProps {
   property: Property;
+  className?: string;
 }
 
-const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
+const PropertyCard: React.FC<PropertyCardProps> = ({ property, className = '' }) => {
   const history = useHistory();
 
   const handleClick = () => {
@@ -16,7 +17,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   };
 
   return (
-    <div className={styles.card} onClick={handleClick}>
+    <div className={`${styles.card} ${className}`} onClick={handleClick}>
       <div className={styles.imageSection}>
         <ImageCarousel
           images={property.images.small}

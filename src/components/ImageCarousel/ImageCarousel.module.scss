@@ -11,6 +11,21 @@
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+
+.imageSlider {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+.slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .image {
@@ -19,6 +34,30 @@
   object-fit: cover;
   display: block;
   border-radius: 8px;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+.loadingSpinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #e5e7eb;
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .placeholder {
@@ -49,16 +88,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
   z-index: 2;
 }
 
 .arrow:hover {
   background: rgba(0, 0, 0, 0.7);
+  transform: translateY(-50%) scale(1.1);
 }
 
 .arrow:active {
   transform: translateY(-50%) scale(0.95);
+}
+
+.arrow:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: translateY(-50%);
 }
 
 .prev {
@@ -69,7 +115,7 @@
   right: 8px;
 }
 
-/* Counter for card view */
+/* Counter for both variants */
 .counter {
   position: absolute;
   bottom: 8px;
@@ -81,36 +127,6 @@
   font-size: 12px;
   font-weight: 500;
   z-index: 2;
-}
-
-/* Dots for detail view */
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: none;
-  background: #ccc;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.dot.active {
-  background: #007bff;
-}
-
-.dot:hover {
-  background: #999;
-}
-
-.dot.active:hover {
-  background: #0056b3;
 }
 
 /* Card variant - smaller height for property cards */
@@ -136,6 +152,11 @@
   right: 6px;
 }
 
+.card .loadingSpinner {
+  width: 20px;
+  height: 20px;
+}
+
 /* Detail variant - flexible height based on content */
 .detail {
   height: 400px;
@@ -143,6 +164,12 @@
 
 .detail .image {
   height: 400px;
+}
+
+.detail .loadingSpinner {
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
 }
 
 /* Tablet styles */
@@ -192,6 +219,11 @@
   .card .next {
     right: 8px;
   }
+
+  .loadingSpinner {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 /* Desktop styles */
@@ -218,6 +250,11 @@
 
   .next {
     right: 16px;
+  }
+
+  .loadingSpinner {
+    width: 32px;
+    height: 32px;
   }
 }
 

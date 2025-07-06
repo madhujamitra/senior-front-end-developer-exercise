@@ -56,7 +56,7 @@ const PropertyListing: React.FC<PropertyListingProps> = ({ search }) => {
                 if (e.key === 'Enter') handleCardClick(property.id);
               }}
             >
-              <PropertyCard property={property} />
+              <PropertyCard property={property} className={styles['property-card--listing']} />
             </div>
           ))}
         </div>

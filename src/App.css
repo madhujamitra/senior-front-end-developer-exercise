@@ -94,46 +94,47 @@ body {
 }
 
 /* Transparent button styles for header auth buttons */
-.dashboard-btn {
-  background: transparent !important;
-  border: none !important;
-  color: #007bff !important;
+.header-auth .btn.dashboard-btn {
+  background: transparent;
+  border: none;
+  color: #222;
   font-weight: 500;
   padding: 0.5rem 1rem;
+  margin: 0;
   transition: color 0.3s ease;
 }
 
-.dashboard-btn:hover {
-  color: #0056b3 !important;
-  background: transparent !important;
+.header-auth .btn.dashboard-btn:hover {
+  color: #222;
+  background: transparent;
 }
 
-.logout-btn {
-  background: transparent !important;
-  border: none !important;
-  color: #dc3545 !important;
+.header-auth .btn.logout-btn {
+  background: transparent;
+  border: none;
+  color: #dc3545;
   font-weight: 500;
   padding: 0.5rem 1rem;
- 
+  margin: 0;
 }
 
-.logout-btn:hover {
-  color: #c82333 !important;
-  background: transparent !important;
+.header-auth .btn.logout-btn:hover {
+  color: #c82333;
+  background: transparent;
 }
 
-.login-btn {
-  background: transparent !important;
-  border: none !important;
-  color: #dc3545 !important;
+.header-auth .btn.login-btn {
+  background: transparent;
+  border: none;
+  color: #dc3545;
   font-weight: 500;
   padding: 0.5rem 1rem;
- 
+  margin: 0;
 }
 
-.login-btn:hover {
-  color: #c82333 !important;
-  background: transparent !important;
+.header-auth .btn.login-btn:hover {
+  color: #c82333;
+  background: transparent;
 }
 
 /* Mobile/Tablet Menu */
@@ -282,9 +283,9 @@ body {
     margin: 0 0.1rem;
   }
   
-  .dashboard-btn,
-  .logout-btn,
-  .login-btn {
+  .header-auth .btn.dashboard-btn,
+  .header-auth .btn.logout-btn,
+  .header-auth .btn.login-btn {
     padding: 0.25rem 0.5rem;
     font-size: 0.9rem;
   }

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import styles from './ImageCarousel.module.scss';
 
 interface ImageCarouselProps {
@@ -15,19 +15,50 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   className = ''
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set([0]));
+  const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
+
+  // Preload adjacent images for smooth transitions
+  useEffect(() => {
+    const preloadAdjacent = () => {
+      const toLoad = new Set(loadedImages);
+      
+      // Always load current image
+      toLoad.add(currentIndex);
+      
+      // Load previous and next images
+      if (currentIndex > 0) toLoad.add(currentIndex - 1);
+      if (currentIndex < images.length - 1) toLoad.add(currentIndex + 1);
+      
+      setLoadedImages(toLoad);
+    };
+
+    preloadAdjacent();
+  }, [currentIndex, images.length, loadedImages]);
 
   const nextImage = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
+    if (isTransitioning) return;
+    
+    setIsTransitioning(true);
     setCurrentIndex((prev) => (prev + 1) % images.length);
-  }, [images.length]);
+    
+    setTimeout(() => setIsTransitioning(false), 300);
+  }, [images.length, isTransitioning]);
 
   const prevImage = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
+    if (isTransitioning) return;
+    
+    setIsTransitioning(true);
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  }, [images.length]);
+    
+    setTimeout(() => setIsTransitioning(false), 300);
+  }, [images.length, isTransitioning]);
 
-  const goToSlide = useCallback((index: number) => {
-    setCurrentIndex(index);
+  const handleImageLoad = useCallback((index: number) => {
+    setLoadedImages(prev => new Set([...Array.from(prev), index]));
   }, []);
 
   if (!images || images.length === 0) {
@@ -54,12 +85,32 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   return (
     <div className={`${styles.carousel} ${styles[variant]} ${className}`}>
       <div className={styles.imageContainer}>
-        <img 
-          src={images[currentIndex]} 
-          alt={`${alt} - Image ${currentIndex + 1}`}
-          className={styles.image}
-          loading="lazy"
-        />
+        <div 
+          className={styles.imageSlider}
+          style={{ 
+            transform: `translateX(-${currentIndex * 100}%)`,
+            transition: isTransitioning ? 'transform 0.3s ease-in-out' : 'none'
+          }}
+        >
+          {images.map((image, index) => (
+            <div key={index} className={styles.slide}>
+              {loadedImages.has(index) ? (
+                <img 
+                  ref={el => imageRefs.current[index] = el}
+                  src={image} 
+                  alt={`${alt} ${index + 1} of ${images.length}`}
+                  className={styles.image}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  onLoad={() => handleImageLoad(index)}
+                />
+              ) : (
+                <div className={styles.imagePlaceholder}>
+                  <div className={styles.loadingSpinner}></div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
         
         {/* Navigation arrows */}
         <button 
@@ -67,6 +118,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
           onClick={prevImage}
           aria-label="Previous image"
           type="button"
+          disabled={isTransitioning}
         >
           &#8249;
         </button>
@@ -76,28 +128,14 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
           onClick={nextImage}
           aria-label="Next image"
           type="button"
+          disabled={isTransitioning}
         >
           &#8250;
         </button>
       </div>
 
-      {/* Dots indicator for detail view */}
-      {variant === 'detail' && images.length > 1 && (
-        <div className={styles.dots}>
-          {images.map((_, index) => (
-            <button
-              key={index}
-              className={`${styles.dot} ${index === currentIndex ? styles.active : ''}`}
-              onClick={() => goToSlide(index)}
-              aria-label={`Go to image ${index + 1}`}
-              type="button"
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Counter for card view */}
-      {variant === 'card' && images.length > 1 && (
+      {/* Counter for both variants */}
+      {images.length > 1 && (
         <div className={styles.counter}>
           {currentIndex + 1} / {images.length}
         </div>

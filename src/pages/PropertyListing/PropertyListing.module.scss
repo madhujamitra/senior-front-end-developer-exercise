@@ -10,7 +10,7 @@
     flex: 1 1 100%;
     overflow-y: auto;
     min-height: 300px;
- 
+    padding-left: 0.5rem;
     border-radius: 12px;
   
 
@@ -59,9 +59,9 @@
 @media (min-width: 900px) {
   .property-listings-flex {
     flex-direction: row;
-    height: 80vh;
-    gap: 2rem;
-    padding: 2rem;
+   // height: 80vh;
+    gap: 1rem;
+   
   }
   .property-listings-flex__list {
     flex: 1 1 50%;
@@ -76,7 +76,7 @@
   }
   .property-listings__grid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    gap: 1rem;
   }
 }
 
@@ -86,4 +86,24 @@
   font-size: 1.2rem;
   color: #b82528;
   margin-top: 2rem;
+}
+
+/* PropertyCard responsive heights for listing view */
+.property-card--listing {
+  height: 380px;
+  max-height: 400px;
+}
+
+@media (min-width: 768px) {
+  .property-card--listing {
+    height: 400px;
+    max-height: 420px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .property-card--listing {
+   height: 420px;
+    max-height: 480px;
+  }
 } 
