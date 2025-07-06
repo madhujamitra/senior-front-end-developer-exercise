@@ -26,11 +26,11 @@ function App() {
           <Header onAdd={() => { console.log("lalala") }} search={search} setSearch={setSearch} />
 
          
-          <Route path='/user-profiles' component={UserProfiles} />
-          <Route path='/property/:id' component={PropertyDetail} />
-          <Route path="/" exact render={() => <PropertyListing search={search} />} />
-          <Route path='/login' component={Login} />
-          <ProtectedRoute path='/dashboard' component={Dashboard} />
+                      <Route path='/user-profiles' component={UserProfiles} />
+            <Route path='/property/:id' component={PropertyDetail} />
+            <Route path="/" exact render={() => <PropertyListing search={search} />} />
+            <Route path='/login' component={Login} />
+            <ProtectedRoute path='/dashboard' component={Dashboard} />
           
           <Footer />
         </div>

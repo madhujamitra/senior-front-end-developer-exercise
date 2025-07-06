@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import propertiesData from '../../data/properties.json';
 import { Property } from '../../types/Property';
+import ImageCarousel from '../../components/ImageCarousel/ImageCarousel';
 import styles from './PropertyDetail.module.scss';
 import Button from '../../components/Button';
 import redPrimary from '../../styles/variables.module.scss';
@@ -63,7 +64,14 @@ const PropertyDetail: React.FC = () => {
         //color="#888"
       />
       <main className={styles['property-detail__main']}>
-        <img src={property.image} alt={property.title} className={styles['property-detail__image']} />
+        <div className={styles['property-detail__image-section']}>
+          <ImageCarousel
+            images={property.images.large}
+            alt={property.title}
+            variant="detail"
+            className={styles['property-detail__carousel']}
+          />
+        </div>
         <article className={styles['property-detail__info']}>
           <header>
             <h1>{property.title}</h1>

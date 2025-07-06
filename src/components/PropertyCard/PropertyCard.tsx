@@ -1,6 +1,8 @@
 import React from 'react';
-import styles from './PropertyCard.module.scss';
+import { useHistory } from 'react-router-dom';
 import { Property } from '../../types/Property';
+import ImageCarousel from '../ImageCarousel/ImageCarousel';
+import styles from './PropertyCard.module.scss';
 
 interface PropertyCardProps {
   property: Property;
@@ -8,16 +10,31 @@ interface PropertyCardProps {
 }
 
 const PropertyCard: React.FC<PropertyCardProps> = ({ property, className = '' }) => {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push(`/property/${property.id}`);
+  };
+
   return (
-    <div className={`${styles['property-card']} ${className}`.trim()}>
-      <img className={styles['property-card__image']} src={property.image} alt={property.title} />
-      <div className={styles['property-card__info']}>
-        <h3 className={styles['property-card__title']}>{property.title}</h3>
-        <p className={styles['property-card__location']}>{property.location}</p>
-        <p className={styles['property-card__price']}>${property.price.toLocaleString()}</p>
-        <p className={styles['property-card__details']}>
-          {property.bedrooms} bed &bull; {property.bathrooms} bath
-        </p>
+    <div className={`${styles.card} ${className}`} onClick={handleClick}>
+      <div className={styles.imageSection}>
+        <ImageCarousel
+          images={property.images.small}
+          alt={property.title}
+          variant="card"
+          className={styles.carousel}
+        />
+      </div>
+      <div className={styles.content}>
+        <h3 className={styles.title}>{property.title}</h3>
+        <p className={styles.price}>${property.price.toLocaleString()}/month</p>
+        <p className={styles.location}>{property.location}</p>
+        <div className={styles.details}>
+          <span className={styles.bedrooms}>{property.bedrooms} bed</span>
+          <span className={styles.bathrooms}>{property.bathrooms} bath</span>
+          <span className={styles.propertyType}>{property.propertyType}</span>
+        </div>
       </div>
     </div>
   );

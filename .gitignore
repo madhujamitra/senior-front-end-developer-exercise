@@ -24,4 +24,7 @@ yarn-error.log*
 
 # SCSS artifacts
 .sass-cache/
-*.css.map 
+*.css.map
+
+# ESLint cache
+.eslintcache 
