@@ -1,0 +1,216 @@
+@import '../../styles/variables';
+
+// Button variant styles
+.themeToggle {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid var(--border-light);
+  border-radius: $radius-md;
+  background: var(--background-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all $transition-normal;
+  font-family: inherit;
+  font-weight: $font-medium;
+
+  &:hover {
+    background: var(--background-secondary);
+    border-color: var(--border-medium);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary-red);
+  }
+}
+
+.icon {
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.text {
+  font-size: $font-sm;
+  white-space: nowrap;
+}
+
+// Size variants for button
+.sm {
+  padding: $spacing-xs $spacing-sm;
+  
+  .icon {
+    font-size: 1em;
+  }
+  
+  .text {
+    font-size: $font-xs;
+  }
+}
+
+.md {
+  padding: $spacing-sm $spacing-md;
+  
+  .icon {
+    font-size: 1.2em;
+  }
+  
+  .text {
+    font-size: $font-sm;
+  }
+}
+
+.lg {
+  padding: $spacing-md $spacing-lg;
+  
+  .icon {
+    font-size: 1.4em;
+  }
+  
+  .text {
+    font-size: $font-md;
+  }
+}
+
+// Switch variant styles
+.switchContainer {
+  display: flex;
+  align-items: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  cursor: pointer;
+}
+
+.switchInput {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--border-medium);
+  transition: $transition-normal;
+  border-radius: 34px;
+  
+  &:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--background-primary);
+    transition: $transition-normal;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px var(--shadow-light);
+  }
+}
+
+.sliderIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  transition: $transition-normal;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.switchInput:checked + .slider {
+  background-color: var(--primary-red);
+}
+
+.switchInput:focus + .slider {
+  box-shadow: 0 0 0 2px var(--primary-red);
+}
+
+.switchInput:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.switchInput:checked + .slider .sliderIcon {
+  transform: translate(-50%, -50%) translateX(26px);
+}
+
+// Switch size variants
+.switchContainer.sm {
+  .switch {
+    width: 48px;
+    height: 28px;
+  }
+  
+  .slider:before {
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+  }
+  
+  .sliderIcon {
+    font-size: 12px;
+  }
+  
+  .switchInput:checked + .slider:before {
+    transform: translateX(20px);
+  }
+  
+  .switchInput:checked + .slider .sliderIcon {
+    transform: translate(-50%, -50%) translateX(20px);
+  }
+}
+
+.switchContainer.lg {
+  .switch {
+    width: 72px;
+    height: 40px;
+  }
+  
+  .slider:before {
+    height: 32px;
+    width: 32px;
+    left: 4px;
+    bottom: 4px;
+  }
+  
+  .sliderIcon {
+    font-size: 16px;
+  }
+  
+  .switchInput:checked + .slider:before {
+    transform: translateX(32px);
+  }
+  
+  .switchInput:checked + .slider .sliderIcon {
+    transform: translate(-50%, -50%) translateX(32px);
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .themeToggle .text {
+    display: none;
+  }
+  
+  .themeToggle {
+    padding: $spacing-sm;
+    min-width: auto;
+  }
+} 

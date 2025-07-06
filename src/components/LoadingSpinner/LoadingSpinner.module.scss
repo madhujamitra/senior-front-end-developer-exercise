@@ -9,8 +9,8 @@
   display: inline-block;
   width: 48px;
   height: 48px;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid $primary-red;
+  border: 4px solid var(--border-light);
+  border-top: 4px solid var(--primary-red);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: $spacing-lg auto;
@@ -23,7 +23,7 @@
 
 .loadingText {
   margin-top: $spacing-md;
-  color: $primary-red;
+  color: var(--primary-red);
   font-weight: 500;
 }
 

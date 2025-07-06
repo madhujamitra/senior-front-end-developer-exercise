@@ -18,6 +18,7 @@ interface UserProfile {
     bedrooms: number;
     amenities: string[];
   };
+  favorites: string[];
   password: string;
 }
 
@@ -67,10 +68,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = () => {
-    if (user) {
-      const FAVORITES_KEY = `favorites_${user.userProfileID}`;
-      localStorage.removeItem(FAVORITES_KEY);
-    }
     setUser(null);
     localStorage.removeItem(USER_KEY);
     localStorage.removeItem(TOKEN_KEY);
