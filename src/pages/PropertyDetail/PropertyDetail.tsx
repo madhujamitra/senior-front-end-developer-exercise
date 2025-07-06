@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import propertiesData from '../../data/properties.json';
 import { Property } from '../../types/Property';
 import ImageCarousel from '../../components/ImageCarousel/ImageCarousel';
 import styles from './PropertyDetail.module.scss';
 import Button from '../../components/Button';
-import redPrimary from '../../styles/variables.module.scss';
+import { useAuth } from '../../context/AuthContext';
+import { useFavorites } from '../../context/FavoritesContext';
 
 const PropertyDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const history = useHistory();
+  const location = useLocation();
+  const { user } = useAuth();
+  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
   const [property, setProperty] = useState<Property | undefined>();
-  const [contact, setContact] = useState({ name: '', email: '', message: '' });
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [inquirySent, setInquirySent] = useState(false);
+  const [favoriteMessage, setFavoriteMessage] = useState('');
 
   useEffect(() => {
     if (id) {
@@ -38,22 +41,42 @@ const PropertyDetail: React.FC = () => {
     return <div>Property not found.</div>;
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setContact({ ...contact, [e.target.name]: e.target.value });
-  };
+  const handleSendInquiry = () => {
+    if (!user) {
+      // Redirect to login with current page as redirect parameter
+      history.push(`/login?redirect=${encodeURIComponent(location.pathname)}`);
+      return;
+    }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
+    setInquirySent(true);
+    
+    // Show message for 2 seconds then navigate back
     setTimeout(() => {
-      setDialogOpen(false);
-      setContact({ name: '', email: '', message: '' });
-    }, 1500);
+      history.push('/');
+    }, 2000);
   };
 
-  const handleContactClick = () => {
-    setDialogOpen(true);
-    setSubmitted(false);
+  const handleFavoriteToggle = () => {
+    if (!user) {
+      // Redirect to login with current page as redirect parameter
+      history.push(`/login?redirect=${encodeURIComponent(location.pathname)}`);
+      return;
+    }
+
+    if (!property) return;
+
+    if (isFavorite(property.id)) {
+      removeFromFavorites(property.id);
+      setFavoriteMessage('Removed from favorites');
+    } else {
+      addToFavorites(property.id);
+      setFavoriteMessage('Added to favorites');
+    }
+
+    // Clear message after 2 seconds
+    setTimeout(() => {
+      setFavoriteMessage('');
+    }, 2000);
   };
 
   return (
@@ -61,7 +84,6 @@ const PropertyDetail: React.FC = () => {
       <Button
         onClick={() => history.push('/')}
         text="←"
-        //color="#888"
       />
       <main className={styles['property-detail__main']}>
         <div className={styles['property-detail__image-section']}>
@@ -71,6 +93,14 @@ const PropertyDetail: React.FC = () => {
             variant="detail"
             className={styles['property-detail__carousel']}
           />
+          <button
+            className={styles['property-detail__favorite-btn']}
+            onClick={handleFavoriteToggle}
+            aria-label={isFavorite(property.id) ? 'Remove from favorites' : 'Add to favorites'}
+            title={isFavorite(property.id) ? 'Remove from favorites' : 'Add to favorites'}
+          >
+            {isFavorite(property.id) ? '❤️' : '🤍'}
+          </button>
         </div>
         <article className={styles['property-detail__info']}>
           <header>
@@ -90,58 +120,21 @@ const PropertyDetail: React.FC = () => {
         </article>
       </main>
       <section className={styles['property-detail__contact']}>
-        <Button
-          onClick={handleContactClick}
-          text="Contact Owner"
-          className="btn--red"
-        />
-        {dialogOpen && (
-          <div className={styles['property-detail__dialog']}>
-            <div className={styles['property-detail__dialog-content']}>
-              <button
-                className={styles['property-detail__dialog-close']}
-                onClick={() => setDialogOpen(false)}
-                aria-label="Close dialog"
-                type="button"
-              >
-                &times;
-              </button>
-              <h2>Contact Owner</h2>
-              {submitted ? (
-                <div className={styles['property-detail__notification']}>
-                  Thank you for your inquiry! The owner has been notified.
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit}>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your Name"
-                    value={contact.name}
-                    onChange={handleChange}
-                    required
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email"
-                    value={contact.email}
-                    onChange={handleChange}
-                    required
-                  />
-                  <textarea
-                    name="message"
-                    placeholder="Message"
-                    value={contact.message}
-                    onChange={handleChange}
-                    required
-                  />
-                  <button type="submit">Submit</button>
-                </form>
-              )}
-            </div>
-            <div className={styles['property-detail__dialog-backdrop']} onClick={() => setDialogOpen(false)} />
+        {favoriteMessage && (
+          <div className={styles['property-detail__favorite-message']}>
+            {favoriteMessage}
           </div>
+        )}
+        {inquirySent ? (
+          <div className={styles['property-detail__notification']}>
+            Inquiry sent! 
+          </div>
+        ) : (
+          <Button
+            onClick={handleSendInquiry}
+            text="Send Inquiry"
+            className="btn--red"
+          />
         )}
       </section>
     </section>

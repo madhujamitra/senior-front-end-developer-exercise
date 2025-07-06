@@ -4,6 +4,7 @@ import Button from './Button'
 import SearchBar from './SearchBar/SearchBar'
 import { SearchState } from '../App'
 import { useAuth } from '../context/AuthContext';
+import ThemeToggle from './ThemeToggle/ThemeToggle';
 import React, { useState, useEffect, useRef } from 'react';
 
 /*interface Props {
@@ -118,6 +119,7 @@ const Header = ({ title, onAdd, showAdd, search, setSearch }: HeaderProps) => {
 
                 {/* Mobile/Tablet Breadcrumb Menu */}
                 <div className="header-mobile-menu">
+                    <ThemeToggle size="sm" variant="switch" className="mobile-theme-toggle" />
                     <button 
                         ref={buttonRef}
                         className="mobile-menu-toggle"
@@ -168,6 +170,7 @@ const Header = ({ title, onAdd, showAdd, search, setSearch }: HeaderProps) => {
                     </div>
 
                     <div className="header-auth">
+                        <ThemeToggle size="sm" className="desktop-theme-toggle" />
                         {!user ? (
                             <Link to="/login" style={{ textDecoration: 'none' }}>
                                 <Button color="transparent" text="Login" onClick={() => {}} className="login-btn" />

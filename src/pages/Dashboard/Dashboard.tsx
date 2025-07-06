@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import UserProfiles from '../../components/UserProfiles';
 import PropertyCard from '../../components/PropertyCard/PropertyCard';
 import { Property } from '../../types/Property';
 import propertiesData from '../../data/properties.json';
 import styles from './Dashboard.module.scss';
 import { useAuth } from '../../context/AuthContext';
-
-// Mock favorite property IDs and saved search property IDs
-const mockFavoriteIds = ['1', '3'];
-const mockSavedSearchIds = ['2', '4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'];
+import { useFavorites } from '../../context/FavoritesContext';
 
 // SVG Favorite Icon Component
 const FavoriteIcon = ({ active, onClick }: { active: boolean, onClick: () => void }) => (
@@ -30,36 +27,24 @@ const FavoriteIcon = ({ active, onClick }: { active: boolean, onClick: () => voi
 );
 
 const Dashboard: React.FC = () => {
-  const [favoriteIds, setFavoriteIds] = useState<string[]>(mockFavoriteIds);
-  const [savedSearchIds] = useState<string[]>(mockSavedSearchIds);
-  const properties = propertiesData as Property[];
   const { user } = useAuth();
+  const { favorites, favoritesCount, addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
+  const properties = propertiesData as Property[];
 
-  const FAVORITES_KEY = user ? `favorites_${user.userProfileID}` : '';
-
-  useEffect(() => {
-    if (user) {
-      const storedFavs = localStorage.getItem(FAVORITES_KEY);
-      if (storedFavs) {
-        setFavoriteIds(JSON.parse(storedFavs));
-      }
-    }
-    // eslint-disable-next-line
-  }, [user?.userProfileID]);
+  // Mock saved search property IDs
+  const mockSavedSearchIds = ['2', '4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'];
 
   if (!user) return null;
 
-  const favoriteProperties = properties.filter(p => favoriteIds.includes(p.id));
-  const savedSearchProperties = properties.filter(p => savedSearchIds.includes(p.id));
+  const favoriteProperties = properties.filter(p => favorites.includes(p.id));
+  const savedSearchProperties = properties.filter(p => mockSavedSearchIds.includes(p.id));
 
   const toggleFavorite = (id: string) => {
-    setFavoriteIds(favs => {
-      const updated = favs.includes(id) ? favs.filter(f => f !== id) : [...favs, id];
-      if (user) {
-        localStorage.setItem(FAVORITES_KEY, JSON.stringify(updated));
-      }
-      return updated;
-    });
+    if (isFavorite(id)) {
+      removeFromFavorites(id);
+    } else {
+      addToFavorites(id);
+    }
   };
 
   return (
@@ -69,7 +54,7 @@ const Dashboard: React.FC = () => {
         <UserProfiles user={user} />
       </section>
       <section className={styles['dashboard__favorites']}>
-        <h2>Favorite Properties</h2>
+        <h2>Favorite Properties ({favoritesCount})</h2>
         <div className={styles['dashboard__property-list']}>
           {favoriteProperties.length === 0 ? (
             <p>No favorite properties yet.</p>
@@ -79,7 +64,7 @@ const Dashboard: React.FC = () => {
                 <PropertyCard property={property} className={styles['property-card--dashboard']} />
                 <div style={{ position: 'absolute', top: 10, right: 10, zIndex: 2 }}>
                   <FavoriteIcon
-                    active={favoriteIds.includes(property.id)}
+                    active={isFavorite(property.id)}
                     onClick={() => toggleFavorite(property.id)}
                   />
                 </div>
@@ -99,7 +84,7 @@ const Dashboard: React.FC = () => {
                 <PropertyCard property={property} className={styles['property-card--dashboard']} />
                 <div style={{ position: 'absolute', top: 10, right: 10, zIndex: 2 }}>
                   <FavoriteIcon
-                    active={favoriteIds.includes(property.id)}
+                    active={isFavorite(property.id)}
                     onClick={() => toggleFavorite(property.id)}
                   />
                 </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import Button from '../components/Button';
 import '../components/styles.css';
 
@@ -13,10 +13,15 @@ interface ValidationState {
 const Login: React.FC = () => {
   const { login } = useAuth();
   const history = useHistory();
+  const location = useLocation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Get redirect URL from query params
+  const query = new URLSearchParams(location.search);
+  const redirectTo = query.get('redirect') || '/dashboard';
   
   // Validation states
   const [emailValidation, setEmailValidation] = useState<ValidationState>({
@@ -99,7 +104,7 @@ const Login: React.FC = () => {
         setError('Invalid username or password');
       } else {
         setError('');
-        history.push('/dashboard');
+        history.push(redirectTo);
       }
     }, 1000);
   };

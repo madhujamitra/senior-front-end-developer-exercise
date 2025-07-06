@@ -2,14 +2,16 @@
 @import '../../styles/mixins';
 
 .errorMessage {
-  color: $primary-red;
-  background: $error-bg;
+  color: var(--error-text);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
   padding: $spacing-md;
   border-radius: 8px;
   text-align: center;
   margin: $spacing-lg auto;
   max-width: 400px;
   font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 @include respond(mobile) {

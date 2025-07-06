@@ -239,21 +239,24 @@ h1 a {
 
 .login-bg {
   padding: 7rem 0 14rem;
-  background: #fafaf8;
+  background: var(--background-secondary);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
 }
 
 .login-container {
   width: 100%;
   max-width: 500px;
-  background: #fff;
+  background: var(--background-primary);
   border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px var(--shadow-light);
   padding: 2.5rem 2rem;
   margin: 2rem 0;
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
 }
 
 .login-header {
@@ -265,14 +268,17 @@ h1 a {
   font-weight: 400;
   font-size: 2rem;
   margin: 0;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
 }
 
 .login-underline {
   width: 60px;
   height: 4px;
-  background: #bc3b3b;
+  background: var(--primary-red);
   margin: 0 auto 16px auto;
   border-radius: 2px;
+  transition: all 0.3s ease;
 }
 
 .login-field {
@@ -284,49 +290,62 @@ h1 a {
   display: block;
   margin-bottom: 6px;
   font-weight: 500;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
 }
 
 .login-required {
-  color: #bc3b3b;
+  color: var(--primary-red);
 }
 
 .login-input {
   width: 100%;
   padding: 1rem;
   font-size: 1.1rem;
-  background: #fafaf8;
-  border: none;
+  background: var(--background-secondary);
+  border: 1px solid var(--border-light);
   border-radius: 2px;
   outline: none;
   margin-bottom: 2px;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.login-input:focus {
+  border-color: var(--primary-red);
+  box-shadow: 0 0 0 2px rgba(188, 59, 59, 0.2);
 }
 
 .login-input.invalid {
-  border: 2px solid #bc3b3b;
-  background: #fff8f8;
+  border: 2px solid var(--primary-red);
+  background: var(--error-bg);
 }
 
 .login-input.focused {
-  background: #fafaf8;
+  background: var(--background-secondary);
+  border-color: var(--primary-red);
+}
+
+.login-input.valid {
+  border-color: var(--success-border);
 }
 
 .login-btn {
   width: 100%;
   padding: 1rem;
-  background: #bc3b3b;
-  color: #fff;
+  background: var(--primary-red);
+  color: var(--text-inverse);
   border: none;
   border-radius: 2px;
   font-size: 1.1rem;
   font-weight: 500;
   cursor: pointer;
   margin: 0;
-
+  transition: all 0.3s ease;
 }
 
 .login-btn:hover {
-  background: #a13333;
- 
+  background: var(--primary-red-hover);
 }
 
 .login-btn:active {
@@ -344,13 +363,13 @@ h1 a {
 
 .login-btn:disabled:hover,
 .login-btn[disabled]:hover {
-  background: #bc3b3b;
+  background: var(--primary-red);
   transform: none;
   box-shadow: none;
 }
 
 .login-error {
-  color: #bc3b3b;
+  color: var(--primary-red);
   font-size: 0.7rem;
   margin-bottom: 16px;
   text-align: center;
@@ -369,14 +388,19 @@ h1 a {
 }
 
 .login-forgot a {
-  color: #222;
+  color: var(--text-primary);
   font-size: 0.98rem;
   text-decoration: underline;
+  transition: all 0.3s ease;
+}
+
+.login-forgot a:hover {
+  color: var(--primary-red);
 }
 
 /* Form Validation Styles */
 .field-error {
-  color: #bc3b3b;
+  color: var(--primary-red);
   font-size: 0.7rem;
   margin-top: 4px;
   margin-bottom: 8px;

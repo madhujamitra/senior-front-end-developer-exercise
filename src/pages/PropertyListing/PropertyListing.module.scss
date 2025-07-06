@@ -1,10 +1,13 @@
+@import '../../styles/variables';
+
 .property-listings-flex {
   display: flex;
   flex-direction: column;
   height: 100vh;
   gap: 1rem;
   padding: 1rem;
-  background: #f9f6f1;
+  background: var(--background-secondary);
+  transition: background-color 0.3s ease;
 
   &__list {
     flex: 1 1 100%;
@@ -12,20 +15,26 @@
     min-height: 300px;
     padding-left: 0.5rem;
     border-radius: 12px;
-  
+    background: var(--background-primary);
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+    padding: 10px;
 
     /* Custom scrollbar */
     scrollbar-width: thin;
-    scrollbar-color: #bc3b3b #fff;
+    scrollbar-color: var(--primary-red) var(--background-primary);
   }
+  
   &__list::-webkit-scrollbar {
     width: 8px;
-    background: #fff;
+    background: var(--background-primary);
   }
+  
   &__list::-webkit-scrollbar-thumb {
-    background: #bc3b3b;
+    background: var(--primary-red);
     border-radius: 8px;
   }
+  
   &__map {
     flex: 1 1 100%;
     min-width: 0;
@@ -33,7 +42,10 @@
     align-items: stretch;
     height: 300px;
     flex-direction: column;
-    overflow: hidden;  
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+    transition: border-color 0.3s ease;
   }
 }
 
@@ -59,21 +71,23 @@
 @media (min-width: 900px) {
   .property-listings-flex {
     flex-direction: row;
-   // height: 80vh;
     gap: 1rem;
-   
   }
+  
   .property-listings-flex__list {
     flex: 1 1 50%;
     min-height: unset;
   }
+  
   .property-listings-flex__map {
     flex: 1 1 50%;
     height: 100%;
   }
+  
   .map-container, .map, .leaflet-container {
     min-height: 400px;
   }
+  
   .property-listings__grid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1rem;
@@ -84,7 +98,7 @@
 .property-listings__error {
   text-align: center;
   font-size: 1.2rem;
-  color: #b82528;
+  color: var(--primary-red);
   margin-top: 2rem;
 }
 
