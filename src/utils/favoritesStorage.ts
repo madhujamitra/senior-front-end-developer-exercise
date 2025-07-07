@@ -54,7 +54,7 @@ export const getUserFavorites = (userProfileID: string): string[] => {
 // Update favorites for a user in localStorage
 export const updateUserFavorites = (userProfileID: string, favorites: string[]): void => {
   localStorage.setItem(`${FAVORITES_STORAGE_KEY}_${userProfileID}`, JSON.stringify(favorites));
-  console.log(`✅ Updated favorites for user ${userProfileID} in localStorage:`, favorites);
+  // Favorites updated in localStorage
 };
 
 // Add a favorite for a user
@@ -76,10 +76,10 @@ export const removeUserFavorite = (userProfileID: string, propertyId: string): v
 // Clear favorites for a user (called on logout)
 export const clearUserFavorites = (userProfileID: string): void => {
   localStorage.removeItem(`${FAVORITES_STORAGE_KEY}_${userProfileID}`);
-  console.log(`🗑️ Cleared favorites for user ${userProfileID} from localStorage`);
+  // Favorites cleared from localStorage
 };
 
 // Initialize favorites storage
 export const initializeFavoritesStorage = () => {
-  console.log('📋 Favorites storage initialized - using localStorage with JSON fallback');
+  // Favorites storage initialized
 }; 

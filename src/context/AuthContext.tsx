@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { initializeFavoritesStorage, getUserProfile, getAllUserProfiles, updateUserFavorites as updateFavoritesStorage, clearUserFavorites } from '../utils/favoritesStorage';
-import { checkForDuplicateKeys } from '../utils/cleanup';
+
 import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
 
 interface UserProfile {
@@ -43,9 +43,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     // Initialize favorites storage system
     initializeFavoritesStorage();
-    
-    // Check for duplicate keys and warn user
-    checkForDuplicateKeys();
     
     // On mount, check for user session in localStorage
     const storedToken = localStorage.getItem(TOKEN_KEY);
@@ -128,7 +125,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const updatedUser = { ...user, favorites };
       setUser(updatedUser);
       
-      console.log(`🔄 Updated favorites for user ${user.userProfileID} in localStorage`);
+      // Favorites updated in localStorage
     }
   };
 
