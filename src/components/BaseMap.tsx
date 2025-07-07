@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { LatLng, Point, LatLngTuple, divIcon } from 'leaflet';
 import { MapContainer, TileLayer, useMapEvents } from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import PropertyMarker from './PropertyMarker'
+import './styles.css'
 
 function MapEvents() {
     const map = useMapEvents({
@@ -36,7 +37,7 @@ export interface Property {
 
 const BaseMap = () => {
 
-    const [properties, setProperties] = useState<Property[]>([
+    const [properties] = useState<Property[]>([
         {
             position: [49.28634216910997, -123.11940420180999],
             price: '2,996',

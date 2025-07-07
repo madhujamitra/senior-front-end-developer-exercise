@@ -38,7 +38,7 @@ const PropertyListing: React.FC<PropertyListingProps> = ({ search }) => {
     window.open(`/property/${id}`, '_blank');
   };
 
-  if (loading) return <LoadingSpinner />;
+  if (loading) return <LoadingSpinner type="card" count={6} message="Loading properties..." />;
   if (error) return <ErrorMessage message={error} />;
 
   return (

@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-import userProfiles from '../data/userProfiles.json';
+import { initializeFavoritesStorage, getUserProfile, getAllUserProfiles, updateUserFavorites as updateFavoritesStorage, clearUserFavorites } from '../utils/favoritesStorage';
+import { checkForDuplicateKeys } from '../utils/cleanup';
+import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
 
 interface UserProfile {
   userProfileID: string;
@@ -39,62 +41,94 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Initialize favorites storage system
+    initializeFavoritesStorage();
+    
+    // Check for duplicate keys and warn user
+    checkForDuplicateKeys();
+    
     // On mount, check for user session in localStorage
-    const storedUser = localStorage.getItem(USER_KEY);
     const storedToken = localStorage.getItem(TOKEN_KEY);
-    if (storedUser && storedToken) {
-      setUser(JSON.parse(storedUser));
+    if (storedToken) {
+      // Try to find user-specific key in localStorage
+      const userKeys = Object.keys(localStorage).filter(key => key.startsWith(USER_KEY + '_'));
+      if (userKeys.length > 0) {
+        const storedUser = localStorage.getItem(userKeys[0]);
+        if (storedUser) {
+          const parsedUser = JSON.parse(storedUser);
+          // Load user profile from JSON (source of truth)
+          const userProfile = getUserProfile(parsedUser.userProfileID);
+          if (userProfile) {
+            setUser(userProfile);
+          }
+        }
+      }
     }
     setLoading(false);
   }, []);
 
   if (loading) {
-    // You can return a spinner or null
-    return <div>Loading...</div>;
+    return <LoadingSpinner type="auth" message="Initializing application..." />;
   }
 
   const login = (email: string, password: string) => {
-    const found = (userProfiles as UserProfile[]).find(
+    const allUsers = getAllUserProfiles();
+    const found = allUsers.find(
       (u) => u.email === email && u.password === password
     );
     if (found) {
-      // Check if user has favorites in localStorage from previous sessions
-      const storedUserKey = `${USER_KEY}_${found.userProfileID}`;
-      const storedUser = localStorage.getItem(storedUserKey);
+      // Get user profile from JSON (source of truth)
+      const userProfile = getUserProfile(found.userProfileID);
       
-      let userToSet = found;
-      if (storedUser) {
-        const parsedStoredUser = JSON.parse(storedUser);
-        // Merge favorites from localStorage with JSON favorites
-        const allFavorites = [...found.favorites, ...parsedStoredUser.favorites];
-        const mergedFavorites = Array.from(new Set(allFavorites));
-        userToSet = { ...found, favorites: mergedFavorites };
-      }
-      
-      setUser(userToSet);
+      if (userProfile) {
+        setUser(userProfile);
       // Generate a mock token (could be a random string)
       const token = `${found.userProfileID}-${Date.now()}`;
-      localStorage.setItem(USER_KEY, JSON.stringify(userToSet));
-      localStorage.setItem(storedUserKey, JSON.stringify(userToSet));
+        // Only store user session (not favorites) in localStorage
+        const userSpecificKey = `${USER_KEY}_${found.userProfileID}`;
+        localStorage.setItem(userSpecificKey, JSON.stringify({ 
+          userProfileID: userProfile.userProfileID,
+          email: userProfile.email,
+          username: userProfile.username 
+        }));
       localStorage.setItem(TOKEN_KEY, token);
       return true;
+      }
     }
     return false;
   };
 
   const logout = () => {
+    // Remove user-specific key if user exists
+    if (user) {
+      const userSpecificKey = `${USER_KEY}_${user.userProfileID}`;
+      localStorage.removeItem(userSpecificKey);
+      
+      // Clear user favorites from localStorage
+      clearUserFavorites(user.userProfileID);
+    }
+    
     setUser(null);
-    localStorage.removeItem(USER_KEY);
     localStorage.removeItem(TOKEN_KEY);
+    
+    // Clean up any remaining auth_user keys
+    Object.keys(localStorage).forEach(key => {
+      if (key.startsWith(USER_KEY)) {
+        localStorage.removeItem(key);
+      }
+    });
   };
 
   const updateUserFavorites = (favorites: string[]) => {
     if (user) {
+      // Update favorites in localStorage
+      updateFavoritesStorage(user.userProfileID, favorites);
+      
+      // Update local state to reflect the change
       const updatedUser = { ...user, favorites };
       setUser(updatedUser);
-      const storedUserKey = `${USER_KEY}_${user.userProfileID}`;
-      localStorage.setItem(USER_KEY, JSON.stringify(updatedUser));
-      localStorage.setItem(storedUserKey, JSON.stringify(updatedUser));
+      
+      console.log(`🔄 Updated favorites for user ${user.userProfileID} in localStorage`);
     }
   };
 

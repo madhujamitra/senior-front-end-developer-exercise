@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import { useHistory, useLocation, Link } from 'react-router-dom'
 import Button from './Button'
 import SearchBar from './SearchBar/SearchBar'

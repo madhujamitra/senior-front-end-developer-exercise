@@ -37,6 +37,9 @@
   --info-bg: #e3f2fd;
   --info-text: #1976d2;
   --info-border: #bbdefb;
+  
+  --skeleton-base: #f0f0f0;
+  --skeleton-highlight: #e0e0e0;
 }
 
 // Dark theme colors
@@ -77,6 +80,9 @@
   --info-bg: #1a2a3d;
   --info-text: #64b5f6;
   --info-border: #2d405a;
+  
+  --skeleton-base: #404040;
+  --skeleton-highlight: #555555;
 }
 
 // SCSS Variables for backwards compatibility
