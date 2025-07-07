@@ -5,6 +5,7 @@ import { SearchState } from '../App'
 import { useAuth } from '../context/AuthContext';
 import ThemeToggle from './ThemeToggle/ThemeToggle';
 import React, { useState, useEffect, useRef } from 'react';
+import { UI_TEXT } from '../constants';
 
 /*interface Props {
     title?: string
@@ -123,7 +124,7 @@ const Header = ({ title, onAdd, showAdd, search, setSearch }: HeaderProps) => {
                         ref={buttonRef}
                         className="mobile-menu-toggle"
                         onClick={toggleMobileMenu}
-                        aria-label="Toggle menu"
+                        aria-label={UI_TEXT.ariaLabels.toggleMenu}
                         aria-expanded={isMobileMenuOpen}
                     >
                         ☰
@@ -143,13 +144,13 @@ const Header = ({ title, onAdd, showAdd, search, setSearch }: HeaderProps) => {
                             <li><a href="#faq" onClick={closeMobileMenu}>FAQ</a></li>
                             <li><a href="#contact" onClick={closeMobileMenu}>Contact</a></li>
                             {!user ? (
-                                <li><Link to="/login" onClick={closeMobileMenu}>Login</Link></li>
+                                <li><Link to="/login" onClick={closeMobileMenu}>{UI_TEXT.buttons.login}</Link></li>
                             ) : (
                                 <>
                                     {showDashboard && (
-                                        <li><button onClick={handleDashboard}>My Portal</button></li>
+                                        <li><button onClick={handleDashboard}>{UI_TEXT.buttons.myPortal}</button></li>
                                     )}
-                                    <li><button onClick={handleLogout}>Logout</button></li>
+                                    <li><button onClick={handleLogout}>{UI_TEXT.buttons.logout}</button></li>
                                 </>
                             )}
                         </ul>
@@ -176,21 +177,21 @@ const Header = ({ title, onAdd, showAdd, search, setSearch }: HeaderProps) => {
                         <ThemeToggle size="sm" className="desktop-theme-toggle" />
                         {!user ? (
                             <Link to="/login" style={{ textDecoration: 'none' }}>
-                                <Button color="transparent" text="Login" onClick={() => {}} className="login-btn" />
+                                <Button color="transparent" text={UI_TEXT.buttons.login} onClick={() => {}} className="login-btn" />
                             </Link>
                         ) : (
                             <div className="auth-buttons">
                                 {showDashboard && (
                                     <Button 
                                         color="transparent" 
-                                        text="My Portal" 
+                                        text={UI_TEXT.buttons.myPortal} 
                                         onClick={handleDashboard}
                                         className="dashboard-btn"
                                     />
                                 )}
                                 <Button 
                                     color="transparent" 
-                                    text="Logout" 
+                                    text={UI_TEXT.buttons.logout} 
                                     onClick={handleLogout}
                                     className="logout-btn"
                                 />

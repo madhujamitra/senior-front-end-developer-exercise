@@ -2,6 +2,7 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { TIMING } from '../../constants';
 import styles from './ImageCarousel.module.scss';
 import { optimizeImage } from '../../utils/performance';
+import { UI_TEXT } from '../../constants';
 
 interface ImageCarouselProps {
   images: string[];
@@ -118,7 +119,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
         <button 
           className={`${styles.arrow} ${styles.prev}`}
           onClick={prevImage}
-          aria-label="Previous image"
+          aria-label={UI_TEXT.ariaLabels.previousImage}
           type="button"
           disabled={isTransitioning}
         >
@@ -128,7 +129,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
         <button 
           className={`${styles.arrow} ${styles.next}`}
           onClick={nextImage}
-          aria-label="Next image"
+          aria-label={UI_TEXT.ariaLabels.nextImage}
           type="button"
           disabled={isTransitioning}
         >

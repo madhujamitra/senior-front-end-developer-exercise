@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-
+import { UI_TEXT } from '../constants';
 import './styles.css'
 
  // Use the provided image URL
@@ -18,7 +18,7 @@ function UserProfiles({ user }: { user: UserProfile }) {
     useEffect(() => {}, [user]);
     return (
         <div className="user-profile">
-            <img src={user.profileImage} alt="profile" />
+            <img src={user.profileImage} alt={UI_TEXT.altText.profile} />
             <br />
             <br />
             <h1>{user.firstName && user.lastName ? `${user.firstName} ${user.lastName}` : user.username}</h1>

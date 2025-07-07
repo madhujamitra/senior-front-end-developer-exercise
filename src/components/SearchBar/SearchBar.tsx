@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { POPULAR_CITIES, ICONS } from '../../constants';
+import { POPULAR_CITIES, ICONS, UI_TEXT } from '../../constants';
 import { debounce } from '../../utils/performance';
 
 interface SearchState {
@@ -48,7 +48,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ search, setSearch }) => {
         ref={inputRef}
         type="text"
         name="location"
-        placeholder="Search rentals by city, neighbourhood..."
+        placeholder={UI_TEXT.placeholders.searchRentals}
         value={localValue}
         onChange={handleChange}
         onFocus={handleFocus}

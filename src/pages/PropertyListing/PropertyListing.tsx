@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styles from './PropertyListing.module.scss';
-import PropertyCard from '../../components/PropertyCard/PropertyCard';
 import { Property } from '../../types/Property';
 import propertiesData from '../../data/properties.json';
 import BaseMap from '../../components/BaseMap';
@@ -8,6 +7,7 @@ import { SearchState } from '../../App';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import { LOADING_MESSAGES } from '../../constants';
+import PropertyGrid from '../../components/PropertyGrid/PropertyGrid';
 
 interface PropertyListingProps {
   search: SearchState;
@@ -43,22 +43,13 @@ const PropertyListing: React.FC<PropertyListingProps> = ({ search }) => {
   return (
     <div className={styles['property-listings-flex']}>
       <div className={styles['property-listings-flex__list']}>
-        <div className={styles['property-listings__grid']}>
-          {filteredProperties.map((property) => (
-            <div
-              key={property.id}
-              className={styles.cardWrapper}
-              onClick={() => handleCardClick(property.id)}
-              role="button"
-              tabIndex={0}
-              onKeyPress={(e) => {
-                if (e.key === 'Enter') handleCardClick(property.id);
-              }}
-            >
-              <PropertyCard property={property} className={styles['property-card--listing']} />
-            </div>
-          ))}
-        </div>
+        <PropertyGrid 
+          properties={filteredProperties} 
+          onCardClick={handleCardClick}
+          gridClassName={styles['property-listings__grid']}
+          cardClassName={styles.cardWrapper}
+          propertyCardClassName={styles['property-card--listing']}
+        />
       </div>
       <div className={styles['property-listings-flex__map']}>
         <BaseMap />

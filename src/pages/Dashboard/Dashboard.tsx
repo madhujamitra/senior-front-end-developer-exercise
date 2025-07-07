@@ -1,13 +1,12 @@
 import React from 'react';
 import UserProfiles from '../../components/UserProfiles';
-import PropertyCard from '../../components/PropertyCard/PropertyCard';
 import { Property } from '../../types/Property';
 import propertiesData from '../../data/properties.json';
 import styles from './Dashboard.module.scss';
 import { useAuth } from '../../context/AuthContext';
 import { useFavorites } from '../../context/FavoritesContext';
-import { MOCK_DATA } from '../../constants';
-import { FavoriteIcon } from '../../components/icons';
+import { MOCK_DATA, UI_TEXT } from '../../constants';
+import PropertySection from '../../components/PropertySection/PropertySection';
 
 
 
@@ -35,51 +34,31 @@ const Dashboard: React.FC = () => {
   return (
     <div className={styles.dashboard}>
       <section className={styles['dashboard__profile']}>
-        <h2>Profile Info</h2>
+        <h2>{UI_TEXT.headings.profileInfo}</h2>
         <UserProfiles user={user} />
       </section>
       
 
-      <section className={styles['dashboard__favorites']}>
-        <h2>Favorite Properties ({favoritesCount})</h2>
-        <div className={styles['dashboard__property-list']}>
-          {favoriteProperties.length === 0 ? (
-            <p>No favorite properties yet.</p>
-          ) : (
-            favoriteProperties.map(property => (
-              <div key={property.id} style={{ position: 'relative', marginBottom: '1rem' }}>
-                <PropertyCard property={property} className={styles['property-card--dashboard']} />
-                <div style={{ position: 'absolute', top: 10, right: 10, zIndex: 2 }}>
-                  <FavoriteIcon
-                    active={isFavorite(property.id)}
-                    onClick={() => toggleFavorite(property.id)}
-                  />
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-      </section>
-      <section className={styles['dashboard__saved-searches']}>
-        <h2>Saved Searches</h2>
-        <div className={styles['dashboard__property-list']}>
-          {savedSearchProperties.length === 0 ? (
-            <p>No saved searches yet.</p>
-          ) : (
-            savedSearchProperties.map(property => (
-              <div key={property.id} style={{ position: 'relative', marginBottom: '1rem' }}>
-                <PropertyCard property={property} className={styles['property-card--dashboard']} />
-                <div style={{ position: 'absolute', top: 10, right: 10, zIndex: 2 }}>
-                  <FavoriteIcon
-                    active={isFavorite(property.id)}
-                    onClick={() => toggleFavorite(property.id)}
-                  />
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-      </section>
+      <PropertySection
+        title={`${UI_TEXT.headings.favoriteProperties} (${favoritesCount})`}
+        properties={favoriteProperties}
+        emptyMessage={UI_TEXT.emptyStates.noFavorites}
+        isFavorite={isFavorite}
+        onToggleFavorite={toggleFavorite}
+        sectionClassName={styles['dashboard__favorites']}
+        cardClassName={styles['property-card--dashboard']}
+        listClassName={styles['dashboard__property-list']}
+      />
+      <PropertySection
+        title={UI_TEXT.headings.savedSearches}
+        properties={savedSearchProperties}
+        emptyMessage={UI_TEXT.emptyStates.noSavedSearches}
+        isFavorite={isFavorite}
+        onToggleFavorite={toggleFavorite}
+        sectionClassName={styles['dashboard__saved-searches']}
+        cardClassName={styles['property-card--dashboard']}
+        listClassName={styles['dashboard__property-list']}
+      />
     </div>
   );
 };

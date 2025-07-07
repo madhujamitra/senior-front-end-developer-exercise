@@ -181,7 +181,7 @@ export const POPULAR_CITIES = [
 export const ICONS = {
   search: {
     viewBox: '0 0 24 24',
-    path: 'M11 19c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm6.3-2.8l4.4 4.4',
+    path: 'M11 19c-4.4 0-8-3.6-8 8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm6.3-2.8l4.4 4.4',
   },
   heart: {
     viewBox: '0 0 24 24',
@@ -191,6 +191,69 @@ export const ICONS = {
     viewBox: '0 0 24 24',
     path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z',
     circle: 'M12 9m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0',
+  },
+} as const;
+
+// UI Text Constants
+export const UI_TEXT = {
+  // Page Headings
+  headings: {
+    profileInfo: 'Profile Info',
+    favoriteProperties: 'Favorite Properties',
+    savedSearches: 'Saved Searches',
+    login: 'Log in',
+  },
+  
+  // Button Text
+  buttons: {
+    login: 'Login',
+    loggingIn: 'Logging in...',
+    logIn: 'Log in',
+    logout: 'Logout',
+    myPortal: 'My Portal',
+    sendInquiry: 'Send Inquiry',
+    previousImage: 'Previous image',
+    nextImage: 'Next image',
+  },
+  
+  // Form Labels
+  labels: {
+    email: 'Email',
+    password: 'Password',
+    required: '*',
+  },
+  
+  // Placeholders
+  placeholders: {
+    email: 'Enter your email',
+    password: 'Enter your password',
+    searchRentals: 'Search rentals by city, neighbourhood...',
+  },
+  
+  // Empty States
+  emptyStates: {
+    noFavorites: 'No favorite properties yet.',
+    noSavedSearches: 'No saved searches yet.',
+  },
+  
+  // ARIA Labels
+  ariaLabels: {
+    toggleMenu: 'Toggle menu',
+    addToFavorites: 'Add to favorites',
+    removeFromFavorites: 'Remove from favorites',
+    previousImage: 'Previous image',
+    nextImage: 'Next image',
+    switchToLightTheme: 'Switch to light theme',
+    switchToDarkTheme: 'Switch to dark theme',
+  },
+  
+  // Success Messages (property specific)
+  inquirySuccess: 'Inquiry sent!',
+  
+  // Alt Text
+  altText: {
+    profile: 'profile',
+    property: 'property',
   },
 } as const;
 
@@ -214,4 +277,5 @@ export const CONSTANTS = {
   MOCK_DATA,
   POPULAR_CITIES,
   ICONS,
+  UI_TEXT,
 } as const; 

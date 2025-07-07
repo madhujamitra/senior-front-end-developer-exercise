@@ -1,5 +1,5 @@
 import React from 'react';
-import { ICONS } from '../../constants';
+import { ICONS, UI_TEXT } from '../../constants';
 
 interface FavoriteIconProps {
   active: boolean;
@@ -33,7 +33,7 @@ const FavoriteIcon: React.FC<FavoriteIconProps> = ({
     onClick={onClick}
     onMouseOver={e => (e.currentTarget.style.fill = '#e57373')}
     onMouseOut={e => (e.currentTarget.style.fill = active ? '#e53935' : '#ccc')}
-    aria-label={active ? 'Remove from favorites' : 'Add to favorites'}
+    aria-label={active ? UI_TEXT.ariaLabels.removeFromFavorites : UI_TEXT.ariaLabels.addToFavorites}
     role="button"
     tabIndex={0}
     onKeyPress={(e) => {
