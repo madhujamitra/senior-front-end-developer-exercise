@@ -19,7 +19,7 @@
       ]
     },
     "price": 2500,
-    "location": "Downtown",
+    "location": "Vancouver",
     "bedrooms": 2,
     "bathrooms": 2,
     "description": "A beautiful modern apartment in the heart of the city.",
@@ -47,7 +47,7 @@
       ]
     },
     "price": 3200,
-    "location": "Suburbia",
+    "location": "Toronto",
     "bedrooms": 3,
     "bathrooms": 2,
     "description": "Spacious house with a large backyard.",
@@ -72,7 +72,7 @@
       ]
     },
     "price": 4000,
-    "location": "Uptown",
+    "location": "Montreal",
     "bedrooms": 2,
     "bathrooms": 2,
     "description": "Condo with amazing city views and modern amenities.",
@@ -99,7 +99,7 @@
       ]
     },
     "price": 2800,
-    "location": "Greenfield",
+    "location": "Vancouver",
     "bedrooms": 4,
     "bathrooms": 3,
     "description": "Perfect family home close to schools and parks.",
@@ -127,7 +127,7 @@
       ]
     },
     "price": 2200,
-    "location": "Arts District",
+    "location": "Calgary",
     "bedrooms": 1,
     "bathrooms": 1,
     "description": "Stylish loft with open floor plan and lots of light.",
@@ -152,7 +152,7 @@
       ]
     },
     "price": 3100,
-    "location": "Westside",
+    "location": "Ottawa",
     "bedrooms": 3,
     "bathrooms": 2,
     "description": "Townhouse with private outdoor space and modern kitchen.",
@@ -175,7 +175,7 @@
       ]
     },
     "price": 1500,
-    "location": "Midtown",
+    "location": "Edmonton",
     "bedrooms": 0,
     "bathrooms": 1,
     "description": "Compact studio ideal for students or singles.",
@@ -203,7 +203,7 @@
       ]
     },
     "price": 6000,
-    "location": "Downtown",
+    "location": "Mississauga",
     "bedrooms": 3,
     "bathrooms": 3,
     "description": "Exclusive penthouse with panoramic city views.",
@@ -230,7 +230,7 @@
       ]
     },
     "price": 2700,
-    "location": "Old Town",
+    "location": "Winnipeg",
     "bedrooms": 3,
     "bathrooms": 2,
     "description": "Charming historic home with modern updates.",
@@ -255,7 +255,7 @@
       ]
     },
     "price": 2300,
-    "location": "Eco Park",
+    "location": "Vancouver",
     "bedrooms": 2,
     "bathrooms": 1,
     "description": "Green building with energy-efficient features.",

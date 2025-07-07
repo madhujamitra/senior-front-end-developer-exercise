@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { TIMING } from '../../constants';
 import styles from './ImageCarousel.module.scss';
+import { optimizeImage } from '../../utils/performance';
 
 interface ImageCarouselProps {
   images: string[];
@@ -74,7 +75,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
     return (
       <div className={`${styles.carousel} ${styles[variant]} ${className}`}>
         <img 
-          src={images[0]} 
+          src={optimizeImage(images[0])} 
           alt={alt}
           className={styles.image}
           loading="lazy"
@@ -98,7 +99,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
               {loadedImages.has(index) ? (
                 <img 
                   ref={el => imageRefs.current[index] = el}
-                  src={image} 
+                  src={optimizeImage(image)} 
                   alt={`${alt} ${index + 1} of ${images.length}`}
                   className={styles.image}
                   loading={index === 0 ? "eager" : "lazy"}

@@ -118,7 +118,7 @@ const Header = ({ title, onAdd, showAdd, search, setSearch }: HeaderProps) => {
 
                 {/* Mobile/Tablet Breadcrumb Menu */}
                 <div className="header-mobile-menu">
-                    <ThemeToggle size="sm" variant="switch" className="mobile-theme-toggle" />
+                    <ThemeToggle size="sm" className="mobile-theme-toggle" />
                     <button 
                         ref={buttonRef}
                         className="mobile-menu-toggle"
@@ -132,6 +132,10 @@ const Header = ({ title, onAdd, showAdd, search, setSearch }: HeaderProps) => {
                         ref={menuRef}
                         className={`mobile-menu-dropdown ${isMobileMenuOpen ? 'open' : ''}`}
                     >
+                        {/* Search Bar in Mobile Menu */}
+                        <div className="mobile-search-container">
+                            <SearchBar search={search} setSearch={setSearch} />
+                        </div>
                         <ul className="breadcrumb-menu">
                             <li><Link to="/" onClick={closeMobileMenu}>Home</Link></li>
                             <li><a href="#create-listing" onClick={closeMobileMenu}>Create a Listing</a></li>

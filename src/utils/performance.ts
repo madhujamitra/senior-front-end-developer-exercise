@@ -1,13 +1,6 @@
 import { TIMING } from '../constants';
 
-// Performance optimization utilities
-export const preloadRoute = (routeImport: () => Promise<any>) => {
-  // Preload route component on hover or focus
-  const link = document.createElement('link');
-  link.rel = 'prefetch';
-  routeImport();
-};
-
+// Route preloading utilities
 export const preloadCriticalRoutes = () => {
   // Preload most commonly accessed routes
   setTimeout(() => {
@@ -16,7 +9,7 @@ export const preloadCriticalRoutes = () => {
   }, TIMING.preloadDelay);
 };
 
-// Image optimization
+// Image optimization utilities
 export const optimizeImage = (src: string, width?: number): string => {
   // Return WebP version if available and supported
   if (supportsWebP()) {
@@ -35,7 +28,7 @@ export const supportsWebP = (): boolean => {
   return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
 };
 
-// Memory optimization
+// Input optimization utilities
 export const debounce = <T extends (...args: any[]) => void>(
   func: T,
   wait: number
@@ -44,19 +37,5 @@ export const debounce = <T extends (...args: any[]) => void>(
   return (...args: Parameters<T>) => {
     clearTimeout(timeout);
     timeout = setTimeout(() => func(...args), wait);
-  };
-};
-
-export const throttle = <T extends (...args: any[]) => void>(
-  func: T,
-  limit: number
-): ((...args: Parameters<T>) => void) => {
-  let inThrottle: boolean;
-  return (...args: Parameters<T>) => {
-    if (!inThrottle) {
-      func(...args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
-    }
   };
 }; 
