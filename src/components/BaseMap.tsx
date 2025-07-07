@@ -3,6 +3,7 @@ import { LatLng, Point, LatLngTuple, divIcon } from 'leaflet';
 import { MapContainer, TileLayer, useMapEvents } from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import PropertyMarker from './PropertyMarker'
+import { MAP_CONFIG, EXTERNAL_URLS, MOCK_DATA } from '../constants';
 import './styles.css'
 
 function MapEvents() {
@@ -11,16 +12,13 @@ function MapEvents() {
             map.locate()
         },
         locationfound: (location) => {
-            console.log('location found:', location)
+            // Location found - could show user notification here
         },
         contextmenu: (event) => {
-            console.log("Coordinates: " + event.latlng.toString());
-            //L.marker(event.latlng).addTo(map);
+            // Right-click context menu - could add marker functionality here
         },
         moveend: () => {
-            console.log("Coordinates of the center: " + map.getCenter().toString());
-            console.log("Coordinates from NorthEast: " + map.getBounds().getNorthEast());
-            console.log("Coordinates from southWest: " + map.getBounds().getSouthWest());
+            // Map moved - could trigger search update here
         }
     })
     return null
@@ -44,12 +42,12 @@ const BaseMap = () => {
             description: "Vancouver Furnished Condo Rental – Amazing 1 Bed, 1 Bath plus Large Private Patio and Fireplace in Excellent Gastown Location",
             imgUrl: new URL("https://rentitfurnished.com/vancouver/wp-content/uploads/sites/2/2020/07/7-13-350x245.jpg"),
             url: new URL("https://rentitfurnished.com/vancouver/property/vancouver-furnished-condo-rental-3vc/")
-        }, {
+        },         {
             position: [49.28034216910997, -123.11940420180999],
-            price: '3,400',
+            price: MOCK_DATA.samplePrice,
             description: "Vancouver Furnished Condo Rental – Amazing 1 Bed, 1 Bath plus Large Private Patio and Fireplace in Excellent Gastown Location",
-            imgUrl: new URL("https://rentitfurnished.com/vancouver/wp-content/uploads/sites/2/2020/07/7-13-350x245.jpg"),
-            url: new URL("https://rentitfurnished.com/vancouver/property/vancouver-furnished-condo-rental-3vc/")
+            imgUrl: new URL(EXTERNAL_URLS.rentItFurnished.sampleImage),
+            url: new URL(EXTERNAL_URLS.rentItFurnished.sampleProperty)
         }, {
             position: [49.28634216910997, -123.128],
             price: '3,195',
@@ -133,10 +131,10 @@ const BaseMap = () => {
 
             </div> */}
             <div className="map">
-                <MapContainer center={position} zoom={15} scrollWheelZoom={true}>
+                <MapContainer center={position} zoom={MAP_CONFIG.defaultZoom} scrollWheelZoom={true}>
                     <TileLayer
-                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        attribution={MAP_CONFIG.attribution}
+                        url={MAP_CONFIG.tileUrl}
                     />
                     <MapEvents />
                     <MarkerClusterGroup {...markerClusterProps}>

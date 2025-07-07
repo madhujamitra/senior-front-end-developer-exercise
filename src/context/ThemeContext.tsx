@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { storageUtils } from '../utils/localStorage';
 
 type Theme = 'light' | 'dark';
 
@@ -10,15 +11,13 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-const THEME_KEY = 'app_theme';
-
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setThemeState] = useState<Theme>('light');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // On mount, check for saved theme preference
-    const savedTheme = localStorage.getItem(THEME_KEY) as Theme;
+    const savedTheme = storageUtils.getTheme() as Theme;
     
     if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
       setThemeState(savedTheme);
@@ -27,7 +26,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       const systemTheme = prefersDark ? 'dark' : 'light';
       setThemeState(systemTheme);
-      localStorage.setItem(THEME_KEY, systemTheme);
+      storageUtils.setTheme(systemTheme);
     }
     
     setLoading(false);
@@ -42,7 +41,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     document.body.classList.add(`theme-${theme}`);
     
     // Save to localStorage
-    localStorage.setItem(THEME_KEY, theme);
+    storageUtils.setTheme(theme);
   }, [theme]);
 
   const toggleTheme = () => {

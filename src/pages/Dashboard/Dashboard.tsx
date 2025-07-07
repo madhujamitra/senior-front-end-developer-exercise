@@ -6,26 +6,10 @@ import propertiesData from '../../data/properties.json';
 import styles from './Dashboard.module.scss';
 import { useAuth } from '../../context/AuthContext';
 import { useFavorites } from '../../context/FavoritesContext';
+import { MOCK_DATA } from '../../constants';
+import { FavoriteIcon } from '../../components/icons';
 
 
-// SVG Favorite Icon Component
-const FavoriteIcon = ({ active, onClick }: { active: boolean, onClick: () => void }) => (
-  <svg
-    width="32"
-    height="32"
-    viewBox="0 0 24 24"
-    fill={active ? '#e53935' : '#ccc'}
-    strokeWidth="1.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    style={{ cursor: 'pointer', transition: 'fill 0.2s' }}
-    onClick={onClick}
-    onMouseOver={e => (e.currentTarget.style.fill = '#e57373')}
-    onMouseOut={e => (e.currentTarget.style.fill = active ? '#e53935' : '#ccc')}
-  >
-    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-  </svg>
-);
 
 const Dashboard: React.FC = () => {
   const { user } = useAuth();
@@ -33,7 +17,7 @@ const Dashboard: React.FC = () => {
   const properties = propertiesData as Property[];
 
   // Mock saved search property IDs
-  const mockSavedSearchIds = ['2', '4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'];
+  const mockSavedSearchIds = MOCK_DATA.savedSearchIds;
 
   if (!user) return null;
 

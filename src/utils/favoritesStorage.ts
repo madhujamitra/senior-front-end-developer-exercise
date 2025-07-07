@@ -3,6 +3,7 @@
 // Clear localStorage on logout (JSON files cannot be modified in React bundles)
 
 import userProfilesData from '../data/userProfiles.json';
+import { getItem, setItem, removeItem } from './localStorage';
 
 interface UserProfile {
   userProfileID: string;
@@ -41,9 +42,9 @@ export const getAllUserProfiles = (): UserProfile[] => {
 // Get favorites for a user (localStorage first, then JSON fallback)
 export const getUserFavorites = (userProfileID: string): string[] => {
   // Check localStorage first
-  const storedFavorites = localStorage.getItem(`${FAVORITES_STORAGE_KEY}_${userProfileID}`);
+  const storedFavorites = getItem<string[]>(`${FAVORITES_STORAGE_KEY}_${userProfileID}`);
   if (storedFavorites) {
-    return JSON.parse(storedFavorites);
+    return storedFavorites;
   }
   
   // Fallback to JSON file
@@ -53,7 +54,7 @@ export const getUserFavorites = (userProfileID: string): string[] => {
 
 // Update favorites for a user in localStorage
 export const updateUserFavorites = (userProfileID: string, favorites: string[]): void => {
-  localStorage.setItem(`${FAVORITES_STORAGE_KEY}_${userProfileID}`, JSON.stringify(favorites));
+  setItem(`${FAVORITES_STORAGE_KEY}_${userProfileID}`, favorites);
   // Favorites updated in localStorage
 };
 
@@ -75,7 +76,7 @@ export const removeUserFavorite = (userProfileID: string, propertyId: string): v
 
 // Clear favorites for a user (called on logout)
 export const clearUserFavorites = (userProfileID: string): void => {
-  localStorage.removeItem(`${FAVORITES_STORAGE_KEY}_${userProfileID}`);
+  removeItem(`${FAVORITES_STORAGE_KEY}_${userProfileID}`);
   // Favorites cleared from localStorage
 };
 
