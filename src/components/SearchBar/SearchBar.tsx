@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { POPULAR_CITIES, ICONS } from '../../constants';
+import { debounce } from '../../utils/performance';
 
 interface SearchState {
   location: string;
@@ -14,10 +15,20 @@ const exampleCities = POPULAR_CITIES.slice(0, 4); // Use first 4 cities
 
 const SearchBar: React.FC<SearchBarProps> = ({ search, setSearch }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [localValue, setLocalValue] = useState(search.location);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Debounced function to update search state
+  const debouncedSetSearch = useRef(
+    debounce((value: string) => {
+      setSearch({ ...search, location: value });
+    }, 300)
+  ).current;
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch({ ...search, location: e.target.value });
+    const value = e.target.value;
+    setLocalValue(value); // Update local state immediately for responsive UI
+    debouncedSetSearch(value); // Debounce the actual search
     setDropdownOpen(true);
   };
 
@@ -25,6 +36,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ search, setSearch }) => {
   const handleBlur = () => setTimeout(() => setDropdownOpen(false), 150);
 
   const handleCityClick = (city: string) => {
+    setLocalValue(city);
     setSearch({ ...search, location: city });
     setDropdownOpen(false);
     inputRef.current?.blur();
@@ -37,7 +49,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ search, setSearch }) => {
         type="text"
         name="location"
         placeholder="Search rentals by city, neighbourhood..."
-        value={search.location}
+        value={localValue}
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}

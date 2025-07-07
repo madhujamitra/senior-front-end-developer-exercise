@@ -225,7 +225,7 @@ a:visited {
   border-radius: 4px;
   box-shadow: 0 2px 8px var(--shadow-medium);
   z-index: 1000;
-  min-width: 200px;
+  min-width: 320px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
@@ -234,11 +234,16 @@ a:visited {
   overflow: hidden;
 }
 
+.mobile-search-container {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
 .mobile-menu-dropdown.open {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
-  max-height: 400px;
+  max-height: 500px;
 }
 
 .breadcrumb-menu {
@@ -303,6 +308,20 @@ a:visited {
   .header-brand h1 {
     font-size: 1.5rem;
   }
+
+  /* Hide text on very small mobile screens to save space */
+  .mobile-theme-toggle .text {
+    display: none;
+  }
+
+  .mobile-theme-toggle {
+    margin-right: 0.75rem;
+  }
+
+  /* Mobile search bar styling */
+  .mobile-search-container {
+    padding: 0.75rem;
+  }
 }
 
 /* Tablet range - 769px to 1024px */
@@ -325,7 +344,21 @@ a:visited {
   }
   
   .mobile-menu-dropdown {
-    min-width: 250px;
+    min-width: 360px;
+  }
+
+  /* Keep text visible on tablets */
+  .mobile-theme-toggle .text {
+    display: block;
+  }
+
+  .mobile-theme-toggle {
+    margin-right: 1rem;
+  }
+
+  /* Tablet search bar styling */
+  .mobile-search-container {
+    padding: 1rem;
   }
 }
 

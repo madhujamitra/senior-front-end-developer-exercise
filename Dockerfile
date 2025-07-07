@@ -1,5 +1,5 @@
 # Build stage
-FROM node:18-alpine AS build
+FROM node:16-alpine AS build
 
 WORKDIR /app
 
@@ -34,7 +34,7 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
 # Development stage
-FROM node:18-alpine AS development
+FROM node:16-alpine AS development
 
 WORKDIR /app
 
