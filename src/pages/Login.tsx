@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useHistory, useLocation } from 'react-router-dom';
 import Button from '../components/Button';
+import { ERROR_MESSAGES } from '../constants';
 import '../components/styles.css';
 
 interface ValidationState {
@@ -47,7 +48,7 @@ const Login: React.FC = () => {
     if (!isValid) {
       return { 
         isValid: false, 
-        message: 'Please enter a valid email address', 
+        message: ERROR_MESSAGES.validation.email, 
         showMessage: true 
       };
     }
@@ -95,18 +96,16 @@ const Login: React.FC = () => {
     setIsSubmitting(true);
     setError('');
     
-    // Simulate API call delay
-    setTimeout(() => {
-      const success = login(username, password);
-      setIsSubmitting(false);
-      
-      if (!success) {
-        setError('Invalid username or password');
-      } else {
-        setError('');
-        history.push(redirectTo);
-      }
-    }, 1000);
+    // Process login
+    const success = login(username, password);
+    setIsSubmitting(false);
+    
+    if (!success) {
+      setError('Invalid username or password');
+    } else {
+      setError('');
+      history.push(redirectTo);
+    }
   };
 
   return (

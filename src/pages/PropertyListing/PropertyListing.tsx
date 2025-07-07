@@ -7,6 +7,7 @@ import BaseMap from '../../components/BaseMap';
 import { SearchState } from '../../App';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import { LOADING_MESSAGES } from '../../constants';
 
 interface PropertyListingProps {
   search: SearchState;
@@ -18,16 +19,14 @@ const PropertyListing: React.FC<PropertyListingProps> = ({ search }) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simulate async data loading
-    setTimeout(() => {
-      try {
-        setProperties(propertiesData as Property[]);
-        setLoading(false);
-      } catch (err) {
-        setError('Failed to load properties.');
-        setLoading(false);
-      }
-    }, 500);
+    // Load properties data
+    try {
+      setProperties(propertiesData as Property[]);
+      setLoading(false);
+    } catch (err) {
+      setError('Failed to load properties.');
+      setLoading(false);
+    }
   }, []);
 
   const filteredProperties = properties.filter((property) => {
@@ -38,7 +37,7 @@ const PropertyListing: React.FC<PropertyListingProps> = ({ search }) => {
     window.open(`/property/${id}`, '_blank');
   };
 
-  if (loading) return <LoadingSpinner type="card" count={6} message="Loading properties..." />;
+  if (loading) return <LoadingSpinner type="card" count={6} message={LOADING_MESSAGES.properties} />;
   if (error) return <ErrorMessage message={error} />;
 
   return (

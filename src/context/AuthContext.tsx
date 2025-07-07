@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { initializeFavoritesStorage, getUserProfile, getAllUserProfiles, updateUserFavorites as updateFavoritesStorage, clearUserFavorites } from '../utils/favoritesStorage';
-
+import { getItem, setItem, removeItem, getAllKeys } from '../utils/localStorage';
 import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
 
 interface UserProfile {
@@ -44,24 +44,55 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // Initialize favorites storage system
     initializeFavoritesStorage();
     
-    // On mount, check for user session in localStorage
-    const storedToken = localStorage.getItem(TOKEN_KEY);
-    if (storedToken) {
-      // Try to find user-specific key in localStorage
-      const userKeys = Object.keys(localStorage).filter(key => key.startsWith(USER_KEY + '_'));
-      if (userKeys.length > 0) {
-        const storedUser = localStorage.getItem(userKeys[0]);
-        if (storedUser) {
-          const parsedUser = JSON.parse(storedUser);
-          // Load user profile from JSON (source of truth)
-          const userProfile = getUserProfile(parsedUser.userProfileID);
-          if (userProfile) {
-            setUser(userProfile);
+    // Check for existing session
+    const checkSession = () => {
+      const storedToken = getItem<string>(TOKEN_KEY);
+      if (storedToken) {
+        // Try to find user-specific key in localStorage
+        const userKeys = getAllKeys().filter(key => key.startsWith(USER_KEY + '_'));
+        if (userKeys.length > 0) {
+          const storedUser = getItem<any>(userKeys[0]);
+          if (storedUser) {
+            // Load user profile from JSON (source of truth)
+            const userProfile = getUserProfile(storedUser.userProfileID);
+            if (userProfile) {
+              setUser(userProfile);
+            }
           }
         }
+      } else {
+        // No token found, ensure user is logged out
+        setUser(null);
       }
-    }
+    };
+
+    // Check session on mount
+    checkSession();
     setLoading(false);
+
+    // Listen for storage changes in other tabs
+    const handleStorageChange = (e: StorageEvent) => {
+      // If auth token was removed in another tab, logout this tab too
+      if (e.key === TOKEN_KEY && e.newValue === null) {
+        setUser(null);
+      }
+      // If auth token was added in another tab, check for login
+      else if (e.key === TOKEN_KEY && e.newValue !== null) {
+        checkSession();
+      }
+      // If any user key was removed, check session
+      else if (e.key && e.key.startsWith(USER_KEY) && e.newValue === null) {
+        checkSession();
+      }
+    };
+
+    // Add event listener for storage changes
+    window.addEventListener('storage', handleStorageChange);
+
+    // Cleanup listener on unmount
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
 
   if (loading) {
@@ -83,12 +114,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const token = `${found.userProfileID}-${Date.now()}`;
         // Only store user session (not favorites) in localStorage
         const userSpecificKey = `${USER_KEY}_${found.userProfileID}`;
-        localStorage.setItem(userSpecificKey, JSON.stringify({ 
+        setItem(userSpecificKey, { 
           userProfileID: userProfile.userProfileID,
           email: userProfile.email,
           username: userProfile.username 
-        }));
-      localStorage.setItem(TOKEN_KEY, token);
+        });
+      setItem(TOKEN_KEY, token);
       return true;
       }
     }
@@ -99,19 +130,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // Remove user-specific key if user exists
     if (user) {
       const userSpecificKey = `${USER_KEY}_${user.userProfileID}`;
-      localStorage.removeItem(userSpecificKey);
+      removeItem(userSpecificKey);
       
       // Clear user favorites from localStorage
       clearUserFavorites(user.userProfileID);
     }
     
     setUser(null);
-    localStorage.removeItem(TOKEN_KEY);
+    removeItem(TOKEN_KEY);
     
     // Clean up any remaining auth_user keys
-    Object.keys(localStorage).forEach(key => {
+    getAllKeys().forEach(key => {
       if (key.startsWith(USER_KEY)) {
-        localStorage.removeItem(key);
+        removeItem(key);
       }
     });
   };

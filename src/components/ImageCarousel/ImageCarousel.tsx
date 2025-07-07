@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { TIMING } from '../../constants';
 import styles from './ImageCarousel.module.scss';
 
 interface ImageCarouselProps {
@@ -44,7 +45,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
     setIsTransitioning(true);
     setCurrentIndex((prev) => (prev + 1) % images.length);
     
-    setTimeout(() => setIsTransitioning(false), 300);
+    setTimeout(() => setIsTransitioning(false), TIMING.carouselTransition);
   }, [images.length, isTransitioning]);
 
   const prevImage = useCallback((e: React.MouseEvent) => {
@@ -54,7 +55,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
     setIsTransitioning(true);
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
     
-    setTimeout(() => setIsTransitioning(false), 300);
+    setTimeout(() => setIsTransitioning(false), TIMING.carouselTransition);
   }, [images.length, isTransitioning]);
 
   const handleImageLoad = useCallback((index: number) => {

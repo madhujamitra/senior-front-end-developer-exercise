@@ -7,6 +7,7 @@ import styles from './PropertyDetail.module.scss';
 import Button from '../../components/Button';
 import { useAuth } from '../../context/AuthContext';
 import { useFavorites } from '../../context/FavoritesContext';
+import { TIMING } from '../../constants';
 
 const PropertyDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -50,10 +51,10 @@ const PropertyDetail: React.FC = () => {
 
     setInquirySent(true);
     
-    // Show message for 2 seconds then navigate back
+    // Show message then navigate back
     setTimeout(() => {
       history.push('/');
-    }, 2000);
+    }, TIMING.successMessageDuration);
   };
 
   const handleFavoriteToggle = () => {
@@ -73,10 +74,10 @@ const PropertyDetail: React.FC = () => {
       setFavoriteMessage('Added to favorites');
     }
 
-    // Clear message after 2 seconds
+    // Clear message after configured duration
     setTimeout(() => {
       setFavoriteMessage('');
-    }, 2000);
+    }, TIMING.successMessageDuration);
   };
 
   return (

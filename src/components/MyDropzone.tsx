@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
+import { API_CONFIG, SUCCESS_MESSAGES, ERROR_MESSAGES } from '../constants';
 
 function MyDropzone({ userProfileID }: any) {
     const onDrop = useCallback(acceptedFiles => {
@@ -13,14 +14,14 @@ function MyDropzone({ userProfileID }: any) {
         formData.append("file", file);
 
         axios.post(
-            `http://localhost:8080/api/v1/user-profile/${userProfileID}/image/upload`, formData, {
+            `${API_CONFIG.baseUrl}${API_CONFIG.endpoints.uploadImage}/${userProfileID}/image/upload`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }
         }).then(() => {
-            console.log("File uploaded successfully");
+            // Success handled - could show user notification here
         }).catch(err => {
-            console.log(err);
+            // Error handled - could show user error message here
         })
     }, [])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })

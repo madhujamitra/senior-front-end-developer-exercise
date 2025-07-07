@@ -1,3 +1,5 @@
+import { TIMING } from '../constants';
+
 // Performance optimization utilities
 export const preloadRoute = (routeImport: () => Promise<any>) => {
   // Preload route component on hover or focus
@@ -11,7 +13,7 @@ export const preloadCriticalRoutes = () => {
   setTimeout(() => {
     import('../pages/PropertyListing/PropertyListing');
     import('../pages/PropertyDetail/PropertyDetail');
-  }, 2000); // Preload after 2 seconds
+  }, TIMING.preloadDelay);
 };
 
 // Image optimization

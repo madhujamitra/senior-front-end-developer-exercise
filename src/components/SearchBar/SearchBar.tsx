@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { POPULAR_CITIES, ICONS } from '../../constants';
 
 interface SearchState {
   location: string;
@@ -9,12 +10,7 @@ interface SearchBarProps {
   setSearch: (search: SearchState) => void;
 }
 
-const exampleCities = [
-  'Vancouver',
-  'Toronto',
-  'Montreal',
-  'Ottawa',
-];
+const exampleCities = POPULAR_CITIES.slice(0, 4); // Use first 4 cities
 
 const SearchBar: React.FC<SearchBarProps> = ({ search, setSearch }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -55,7 +51,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ search, setSearch }) => {
         }}
       />
       <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: '#b82528', fontSize: 20 }}>
-        <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox={ICONS.search.viewBox}><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </span>
       {dropdownOpen && (
         <div style={{
@@ -88,7 +84,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ search, setSearch }) => {
               onMouseOver={e => (e.currentTarget.style.background = '#f9f6f1')}
               onMouseOut={e => (e.currentTarget.style.background = 'transparent')}
             >
-              <svg width="18" height="18" fill="none" stroke="#b82528" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+              <svg width="18" height="18" fill="none" stroke="#b82528" strokeWidth="2" viewBox={ICONS.location.viewBox}><path d={ICONS.location.path}/><circle cx="12" cy="9" r="2.5"/></svg>
               <span>{city}</span>
             </div>
           ))}
