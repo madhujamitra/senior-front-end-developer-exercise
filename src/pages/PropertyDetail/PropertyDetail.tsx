@@ -8,6 +8,7 @@ import Button from '../../components/Button';
 import { useAuth } from '../../context/AuthContext';
 import { useFavorites } from '../../context/FavoritesContext';
 import { TIMING, UI_TEXT } from '../../constants';
+import PropertyInfo from '../../components/PropertyInfo/PropertyInfo';
 
 const PropertyDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -107,10 +108,7 @@ const PropertyDetail: React.FC = () => {
           <header>
             <h1>{property.title}</h1>
           </header>
-          <p><strong>Location:</strong> {property.location}</p>
-          <p><strong>Type:</strong> {property.propertyType}</p>
-          <p><strong>Bedrooms:</strong> {property.bedrooms} | <strong>Bathrooms:</strong> {property.bathrooms}</p>
-          <p><strong>Price:</strong> ${property.price.toLocaleString()}</p>
+          <PropertyInfo property={property} />
           <p>{property.description}</p>
           <div>
             <strong>Amenities:</strong>
