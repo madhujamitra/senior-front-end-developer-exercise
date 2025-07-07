@@ -6,7 +6,7 @@ import propertiesData from '../../data/properties.json';
 import styles from './Dashboard.module.scss';
 import { useAuth } from '../../context/AuthContext';
 import { useFavorites } from '../../context/FavoritesContext';
-import { MOCK_DATA } from '../../constants';
+import { MOCK_DATA, UI_TEXT } from '../../constants';
 import { FavoriteIcon } from '../../components/icons';
 
 
@@ -35,16 +35,16 @@ const Dashboard: React.FC = () => {
   return (
     <div className={styles.dashboard}>
       <section className={styles['dashboard__profile']}>
-        <h2>Profile Info</h2>
+        <h2>{UI_TEXT.headings.profileInfo}</h2>
         <UserProfiles user={user} />
       </section>
       
 
       <section className={styles['dashboard__favorites']}>
-        <h2>Favorite Properties ({favoritesCount})</h2>
+        <h2>{UI_TEXT.headings.favoriteProperties} ({favoritesCount})</h2>
         <div className={styles['dashboard__property-list']}>
           {favoriteProperties.length === 0 ? (
-            <p>No favorite properties yet.</p>
+            <p>{UI_TEXT.emptyStates.noFavorites}</p>
           ) : (
             favoriteProperties.map(property => (
               <div key={property.id} style={{ position: 'relative', marginBottom: '1rem' }}>
@@ -61,10 +61,10 @@ const Dashboard: React.FC = () => {
         </div>
       </section>
       <section className={styles['dashboard__saved-searches']}>
-        <h2>Saved Searches</h2>
+        <h2>{UI_TEXT.headings.savedSearches}</h2>
         <div className={styles['dashboard__property-list']}>
           {savedSearchProperties.length === 0 ? (
-            <p>No saved searches yet.</p>
+            <p>{UI_TEXT.emptyStates.noSavedSearches}</p>
           ) : (
             savedSearchProperties.map(property => (
               <div key={property.id} style={{ position: 'relative', marginBottom: '1rem' }}>

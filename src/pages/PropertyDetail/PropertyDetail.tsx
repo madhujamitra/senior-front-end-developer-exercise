@@ -7,7 +7,7 @@ import styles from './PropertyDetail.module.scss';
 import Button from '../../components/Button';
 import { useAuth } from '../../context/AuthContext';
 import { useFavorites } from '../../context/FavoritesContext';
-import { TIMING } from '../../constants';
+import { TIMING, UI_TEXT } from '../../constants';
 
 const PropertyDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -128,12 +128,12 @@ const PropertyDetail: React.FC = () => {
         )}
         {inquirySent ? (
           <div className={styles['property-detail__notification']}>
-            Inquiry sent! 
+            {UI_TEXT.inquirySuccess}
           </div>
         ) : (
           <Button
             onClick={handleSendInquiry}
-            text="Send Inquiry"
+            text={UI_TEXT.buttons.sendInquiry}
             className="btn--red"
           />
         )}
