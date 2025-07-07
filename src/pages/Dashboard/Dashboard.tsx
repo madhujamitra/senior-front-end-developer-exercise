@@ -7,6 +7,7 @@ import styles from './Dashboard.module.scss';
 import { useAuth } from '../../context/AuthContext';
 import { useFavorites } from '../../context/FavoritesContext';
 
+
 // SVG Favorite Icon Component
 const FavoriteIcon = ({ active, onClick }: { active: boolean, onClick: () => void }) => (
   <svg
@@ -53,6 +54,8 @@ const Dashboard: React.FC = () => {
         <h2>Profile Info</h2>
         <UserProfiles user={user} />
       </section>
+      
+
       <section className={styles['dashboard__favorites']}>
         <h2>Favorite Properties ({favoritesCount})</h2>
         <div className={styles['dashboard__property-list']}>

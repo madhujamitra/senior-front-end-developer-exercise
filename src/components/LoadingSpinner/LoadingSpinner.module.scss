@@ -3,6 +3,7 @@
 
 .spinnerContainer {
   text-align: center;
+  padding: $spacing-xl;
 }
 
 .spinner {
@@ -27,12 +28,386 @@
   font-weight: 500;
 }
 
+// Enhanced skeleton loading styles
+.skeletonContainer {
+  padding: $spacing-lg;
+  width: 100%;
+}
+
+.skeletonCard {
+  background: var(--background-secondary);
+  border-radius: $radius-md;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+}
+
+.skeletonImage {
+  width: 100%;
+  height: 200px;
+  background: var(--skeleton-base);
+  border-radius: $radius-sm;
+  margin-bottom: $spacing-md;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.skeletonImageLarge {
+  width: 100%;
+  height: 400px;
+  background: var(--skeleton-base);
+  border-radius: $radius-sm;
+  margin-bottom: $spacing-lg;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.skeletonContent {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.skeletonDetailContent {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.skeletonTitle {
+  height: 24px;
+  background: var(--skeleton-base);
+  border-radius: $radius-sm;
+  width: 70%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.skeletonSubtitle {
+  height: 18px;
+  background: var(--skeleton-base);
+  border-radius: $radius-sm;
+  width: 50%;
+  animation: shimmer 2s ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+
+.skeletonText {
+  height: 16px;
+  background: var(--skeleton-base);
+  border-radius: $radius-sm;
+  width: 100%;
+  animation: shimmer 2s ease-in-out infinite;
+  animation-delay: 0.1s;
+  
+  &:nth-child(3) {
+    width: 85%;
+    animation-delay: 0.3s;
+  }
+  
+  &:nth-child(4) {
+    width: 60%;
+    animation-delay: 0.4s;
+  }
+}
+
+.skeletonPrice {
+  height: 20px;
+  background: var(--skeleton-base);
+  border-radius: $radius-sm;
+  width: 40%;
+  animation: shimmer 2s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.skeletonPriceSection {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  margin-top: $spacing-md;
+}
+
+.skeletonBadge {
+  height: 24px;
+  width: 80px;
+  background: var(--skeleton-base);
+  border-radius: $radius-lg;
+  animation: shimmer 2s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+
+.skeletonListItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.skeletonAvatar {
+  width: 48px;
+  height: 48px;
+  background: var(--skeleton-base);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.skeletonListContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.skeletonDetail {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+// Dashboard Skeleton Styles
+.skeletonDashboard {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+}
+
+.skeletonProfileSection {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  background: var(--background-secondary);
+  padding: $spacing-lg;
+  border-radius: $radius-md;
+  border: 1px solid var(--border-light);
+}
+
+.skeletonProfileImage {
+  width: 80px;
+  height: 80px;
+  background: var(--skeleton-base);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.skeletonProfileInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.skeletonSection {
+  background: var(--background-secondary);
+  padding: $spacing-lg;
+  border-radius: $radius-md;
+  border: 1px solid var(--border-light);
+}
+
+.skeletonSectionTitle {
+  height: 28px;
+  background: var(--skeleton-base);
+  border-radius: $radius-sm;
+  width: 200px;
+  margin-bottom: $spacing-lg;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.skeletonCardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-md;
+}
+
+.skeletonMiniCard {
+  background: var(--background-primary);
+  border-radius: $radius-sm;
+  padding: $spacing-sm;
+  border: 1px solid var(--border-light);
+}
+
+.skeletonMiniImage {
+  width: 100%;
+  height: 120px;
+  background: var(--skeleton-base);
+  border-radius: $radius-sm;
+  margin-bottom: $spacing-sm;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.skeletonMiniContent {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+// Profile Skeleton Styles
+.skeletonProfile {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.skeletonProfileHeader {
+  display: flex;
+  gap: $spacing-lg;
+  background: var(--background-secondary);
+  padding: $spacing-lg;
+  border-radius: $radius-md;
+  border: 1px solid var(--border-light);
+}
+
+.skeletonProfileImageLarge {
+  width: 120px;
+  height: 120px;
+  background: var(--skeleton-base);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.skeletonProfileDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.skeletonProfileContent {
+  background: var(--background-secondary);
+  padding: $spacing-lg;
+  border-radius: $radius-md;
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+// Map Skeleton Styles
+.skeletonMap {
+  width: 100%;
+  height: 400px;
+  background: var(--background-secondary);
+  border-radius: $radius-md;
+  border: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skeletonMapPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+  color: var(--text-secondary);
+}
+
+.skeletonMapIcon {
+  width: 48px;
+  height: 48px;
+  background: var(--skeleton-base);
+  border-radius: 50%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+// Auth Skeleton Styles
+.skeletonAuth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-xl;
+}
+
+.skeletonAuthIcon {
+  width: 32px;
+  height: 32px;
+  background: var(--skeleton-base);
+  border-radius: 50%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+// Enhanced shimmer animation with gradient effect
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+// Apply gradient shimmer effect
+.skeletonImage,
+.skeletonImageLarge,
+.skeletonTitle,
+.skeletonSubtitle,
+.skeletonText,
+.skeletonPrice,
+.skeletonBadge,
+.skeletonAvatar,
+.skeletonProfileImage,
+.skeletonProfileImageLarge,
+.skeletonSectionTitle,
+.skeletonMiniImage,
+.skeletonMapIcon,
+.skeletonAuthIcon {
+  background: linear-gradient(90deg, var(--skeleton-base) 25%, var(--skeleton-highlight) 50%, var(--skeleton-base) 75%);
+  background-size: 200px 100%;
+  animation: shimmer 2s infinite;
+}
+
+// Responsive design
 @include respond(mobile) {
   .spinner {
     width: 32px;
     height: 32px;
   }
+  
   .loadingText {
     font-size: $font-sm;
+  }
+  
+  .skeletonImage {
+    height: 150px;
+  }
+  
+  .skeletonImageLarge {
+    height: 250px;
+  }
+  
+  .skeletonDetail {
+    gap: $spacing-md;
+  }
+  
+  .skeletonProfileSection {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .skeletonProfileHeader {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .skeletonCardGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .skeletonMap {
+    height: 300px;
+  }
+}
+
+@include respond(tablet) {
+  .skeletonCardGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@include respond(desktop) {
+  .skeletonCardGrid {
+    grid-template-columns: repeat(3, 1fr);
   }
 } 

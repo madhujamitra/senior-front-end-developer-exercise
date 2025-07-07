@@ -138,8 +138,49 @@ const ThemeDemo: React.FC = () => {
       </div>
 
       <div className={styles.loadingSection}>
-        <h2>Loading States</h2>
-        <LoadingSpinner />
+        <h2>Loading States & Skeletons</h2>
+        
+        <div className={styles.skeletonShowcase}>
+          <div className={styles.skeletonDemo}>
+            <h3>Spinner Loading</h3>
+            <LoadingSpinner type="spinner" message="Loading content..." />
+          </div>
+          
+          <div className={styles.skeletonDemo}>
+            <h3>Card Skeletons</h3>
+            <LoadingSpinner type="card" count={2} />
+          </div>
+          
+          <div className={styles.skeletonDemo}>
+            <h3>Detail Skeleton</h3>
+            <LoadingSpinner type="detail" />
+          </div>
+          
+          <div className={styles.skeletonDemo}>
+            <h3>List Skeleton</h3>
+            <LoadingSpinner type="list" count={3} />
+          </div>
+          
+          <div className={styles.skeletonDemo}>
+            <h3>Dashboard Skeleton</h3>
+            <LoadingSpinner type="dashboard" />
+          </div>
+          
+          <div className={styles.skeletonDemo}>
+            <h3>Profile Skeleton</h3>
+            <LoadingSpinner type="profile" />
+          </div>
+          
+          <div className={styles.skeletonDemo}>
+            <h3>Map Skeleton</h3>
+            <LoadingSpinner type="map" />
+          </div>
+          
+          <div className={styles.skeletonDemo}>
+            <h3>Auth Skeleton</h3>
+            <LoadingSpinner type="auth" />
+          </div>
+        </div>
       </div>
 
       <div className={styles.featuresSection}>

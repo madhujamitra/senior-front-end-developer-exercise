@@ -28,7 +28,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +52,7 @@
   "devDependencies": {
     "@types/leaflet": "^1.5.21",
     "@types/react-leaflet-markercluster": "^2.0.0",
-    "@types/react-router-dom": "^5.1.7"
+    "@types/react-router-dom": "^5.1.7",
+    "webpack-bundle-analyzer": "^4.10.2"
   }
 }
