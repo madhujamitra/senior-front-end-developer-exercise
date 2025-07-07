@@ -41,7 +41,7 @@ function App() {
         <FavoritesProvider>
           <Router>
             <div className="container">
-              <Header onAdd={() => { console.log("lalala") }} search={search} setSearch={setSearch} />
+              <Header onAdd={() => {}} search={search} setSearch={setSearch} />
 
               <Suspense fallback={<RouteFallback type="card" />}>
                 <Route path='/user-profiles' component={UserProfiles} />

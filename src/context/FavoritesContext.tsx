@@ -32,7 +32,7 @@ export const FavoritesProvider = ({ children }: { children: ReactNode }) => {
         const newFavorites = [...prev, propertyId];
         // Update the user profile with new favorites
         updateUserFavorites(newFavorites);
-        console.log(`Added property ${propertyId} to favorites for user ${user.userProfileID}`);
+        // Property added to favorites
         return newFavorites;
       }
       return prev;
@@ -46,7 +46,7 @@ export const FavoritesProvider = ({ children }: { children: ReactNode }) => {
       const newFavorites = prev.filter(id => id !== propertyId);
       // Update the user profile with new favorites
       updateUserFavorites(newFavorites);
-      console.log(`Removed property ${propertyId} from favorites for user ${user.userProfileID}`);
+      // Property removed from favorites
       return newFavorites;
     });
   };
