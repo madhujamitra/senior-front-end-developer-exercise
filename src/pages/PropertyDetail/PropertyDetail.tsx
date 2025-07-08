@@ -7,7 +7,7 @@ import styles from './PropertyDetail.module.scss';
 import Button from '../../components/Button';
 import { useAuth } from '../../context/AuthContext';
 import { useFavorites } from '../../context/FavoritesContext';
-import { TIMING, UI_TEXT } from '../../constants';
+import { TIMING, UI_TEXT, ICONS } from '../../constants';
 import PropertyInfo from '../../components/PropertyInfo/PropertyInfo';
 
 const PropertyDetail: React.FC = () => {
@@ -40,7 +40,7 @@ const PropertyDetail: React.FC = () => {
   }, [id]);
 
   if (!property) {
-    return <div>Property not found.</div>;
+    return <div>{UI_TEXT.emptyStates.propertyNotFound}</div>;
   }
 
   const handleSendInquiry = () => {
@@ -69,10 +69,10 @@ const PropertyDetail: React.FC = () => {
 
     if (isFavorite(property.id)) {
       removeFromFavorites(property.id);
-      setFavoriteMessage('Removed from favorites');
+      setFavoriteMessage(UI_TEXT.favoriteMessages.removed);
     } else {
       addToFavorites(property.id);
-      setFavoriteMessage('Added to favorites');
+      setFavoriteMessage(UI_TEXT.favoriteMessages.added);
     }
 
     // Clear message after configured duration
@@ -85,7 +85,7 @@ const PropertyDetail: React.FC = () => {
     <section className={styles['property-detail']}>
       <Button
         onClick={() => history.push('/')}
-        text="←"
+        text={UI_TEXT.buttons.back}
       />
       <main className={styles['property-detail__main']}>
         <div className={styles['property-detail__image-section']}>
@@ -101,7 +101,7 @@ const PropertyDetail: React.FC = () => {
             aria-label={isFavorite(property.id) ? 'Remove from favorites' : 'Add to favorites'}
             title={isFavorite(property.id) ? 'Remove from favorites' : 'Add to favorites'}
           >
-            {isFavorite(property.id) ? '❤️' : '🤍'}
+            {isFavorite(property.id) ? ICONS.emoji.heartFilled : ICONS.emoji.heartEmpty}
           </button>
         </div>
         <article className={styles['property-detail__info']}>
@@ -111,7 +111,7 @@ const PropertyDetail: React.FC = () => {
           <PropertyInfo property={property} />
           <p>{property.description}</p>
           <div>
-            <strong>Amenities:</strong>
+            <strong>{UI_TEXT.propertyLabels.amenities}:</strong>
             <ul>
               {property.amenities?.map((a) => <li key={a}>{a}</li>)}
             </ul>

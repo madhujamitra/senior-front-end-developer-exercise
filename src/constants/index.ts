@@ -141,6 +141,20 @@ export const THEME_CONFIG = {
   transitionDuration: '0.3s',
 } as const;
 
+// Theme Colors
+export const THEME_COLORS = {
+  light: {
+    favoriteActive: '#e53935',
+    favoriteInactive: '#ccc',
+    favoriteHover: '#e57373'
+  },
+  dark: {
+    favoriteActive: '#ff6b6b',
+    favoriteInactive: '#666',
+    favoriteHover: '#ff8a80'
+  }
+} as const;
+
 // Local Storage Keys
 export const STORAGE_KEYS = {
   theme: 'app-theme',
@@ -163,6 +177,7 @@ export const MOCK_DATA = {
   samplePrice: '3,400',
   defaultAvatar: '/images/avatar-default.png',
   savedSearchIds: ['2', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'] as string[],
+  samplePropertyDescription: 'Vancouver Furnished Condo Rental – Amazing 1 Bed, 1 Bath plus Large Private Patio and Fireplace in Excellent Gastown Location',
 } as const;
 
 // Popular Cities for Search
@@ -192,6 +207,13 @@ export const ICONS = {
     path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z',
     circle: 'M12 9m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0',
   },
+  // Emoji Icons
+  emoji: {
+    heartFilled: '❤️',
+    heartEmpty: '🤍',
+    moon: '🌙',
+    sun: '☀️',
+  },
 } as const;
 
 // UI Text Constants
@@ -214,6 +236,7 @@ export const UI_TEXT = {
     sendInquiry: 'Send Inquiry',
     previousImage: 'Previous image',
     nextImage: 'Next image',
+    back: '←',
   },
   
   // Form Labels
@@ -234,6 +257,7 @@ export const UI_TEXT = {
   emptyStates: {
     noFavorites: 'No favorite properties yet.',
     noSavedSearches: 'No saved searches yet.',
+    propertyNotFound: 'Property not found.',
   },
   
   // ARIA Labels
@@ -250,10 +274,45 @@ export const UI_TEXT = {
   // Success Messages (property specific)
   inquirySuccess: 'Inquiry sent!',
   
+  // Favorite Messages
+  favoriteMessages: {
+    added: 'Added to favorites',
+    removed: 'Removed from favorites',
+  },
+  
   // Alt Text
   altText: {
     profile: 'profile',
     property: 'property',
+  },
+  
+  // Property Labels
+  propertyLabels: {
+    bed: 'bed',
+    bath: 'bath',
+    bedrooms: 'Bedrooms',
+    bathrooms: 'Bathrooms',
+    location: 'Location',
+    type: 'Type',
+    price: 'Price',
+    amenities: 'Amenities',
+  },
+  
+  // Formatting
+  formatting: {
+    pricePerMonth: '/month',
+    bedroomsBathrooms: (bedrooms: number, bathrooms: number) => `${bedrooms} | Bathrooms: ${bathrooms}`,
+  },
+  
+  // Map Labels
+  mapLabels: {
+    searchOnMapMove: 'Search on map move',
+  },
+  
+  // Theme Labels
+  themeLabels: {
+    dark: 'Dark',
+    light: 'Light',
   },
 } as const;
 
@@ -272,6 +331,7 @@ export const CONSTANTS = {
   PROPERTY_TYPES,
   FILTER_OPTIONS,
   THEME_CONFIG,
+  THEME_COLORS,
   STORAGE_KEYS,
   BREAKPOINTS,
   MOCK_DATA,
