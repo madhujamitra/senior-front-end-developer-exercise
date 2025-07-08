@@ -2,6 +2,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Property } from '../../types/Property';
 import ImageCarousel from '../ImageCarousel/ImageCarousel';
+import PropertyDetails from '../PropertyDetails/PropertyDetails';
+import { UI_TEXT } from '../../constants';
 import styles from './PropertyCard.module.scss';
 
 interface PropertyCardProps {
@@ -28,13 +30,13 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property, className = '' })
       </div>
       <div className={styles.content}>
         <h3 className={styles.title}>{property.title}</h3>
-        <p className={styles.price}>${property.price.toLocaleString()}/month</p>
+        <p className={styles.price}>${property.price.toLocaleString()}{UI_TEXT.formatting.pricePerMonth}</p>
         <p className={styles.location}>{property.location}</p>
-        <div className={styles.details}>
-          <span className={styles.bedrooms}>{property.bedrooms} bed</span>
-          <span className={styles.bathrooms}>{property.bathrooms} bath</span>
-          <span className={styles.propertyType}>{property.propertyType}</span>
-        </div>
+        <PropertyDetails 
+          property={property} 
+          className={styles.details}
+          showLabels={true}
+        />
       </div>
     </div>
   );

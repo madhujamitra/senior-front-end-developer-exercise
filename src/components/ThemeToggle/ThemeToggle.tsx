@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
+import ThemeToggleContent from '../ThemeToggleContent/ThemeToggleContent';
 import styles from './ThemeToggle.module.scss';
 
 interface ThemeToggleProps {
@@ -42,12 +43,11 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
       title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
     >
-      <span className={styles.icon}>
-        {theme === 'light' ? '🌙' : '☀️'}
-      </span>
-      <span className={styles.text}>
-        {theme === 'light' ? 'Dark' : 'Light'}
-      </span>
+      <ThemeToggleContent 
+        theme={theme} 
+        iconClassName={styles.icon}
+        textClassName={styles.text}
+      />
     </button>
   );
 };
