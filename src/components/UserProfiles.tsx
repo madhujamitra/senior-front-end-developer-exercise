@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { UI_TEXT } from '../constants';
 import './styles.css'
 
@@ -15,7 +14,6 @@ interface UserProfile {
 }
 
 function UserProfiles({ user }: { user: UserProfile }) {
-    useEffect(() => {}, [user]);
     return (
         <div className="user-profile">
             <img src={user.profileImage} alt={UI_TEXT.altText.profile} />
