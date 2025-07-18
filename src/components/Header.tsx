@@ -25,6 +25,7 @@ const Header = ({ title, onAdd, showAdd, search, setSearch }: HeaderProps) => {
     const location = useLocation();
     const { user, logout } = useAuth();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -35,6 +36,11 @@ const Header = ({ title, onAdd, showAdd, search, setSearch }: HeaderProps) => {
     
     const handleDashboard = () => {
         history.push('/dashboard');
+        setIsMobileMenuOpen(false);
+    };
+
+    const handleMobileSearchToggle = () => {
+        setIsMobileSearchOpen((prev) => !prev);
         setIsMobileMenuOpen(false);
     };
 
@@ -108,6 +114,27 @@ const Header = ({ title, onAdd, showAdd, search, setSearch }: HeaderProps) => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    useEffect(() => {
+        if (!isMobileSearchOpen) return;
+        function handleClickOutside(event: MouseEvent) {
+            const searchContainer = document.querySelector('.mobile-search-container');
+            if (searchContainer && !searchContainer.contains(event.target as Node)) {
+                setIsMobileSearchOpen(false);
+            }
+        }
+        function handleEscape(event: KeyboardEvent) {
+            if (event.key === 'Escape') {
+                setIsMobileSearchOpen(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('keydown', handleEscape);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('keydown', handleEscape);
+        };
+    }, [isMobileSearchOpen]);
+
     return (
         <header className="header">
             <nav className="header-nav">
@@ -120,6 +147,16 @@ const Header = ({ title, onAdd, showAdd, search, setSearch }: HeaderProps) => {
                 {/* Mobile/Tablet Breadcrumb Menu */}
                 <div className="header-mobile-menu">
                     <ThemeToggle size="sm" className="mobile-theme-toggle" />
+                    <button
+                        aria-label="Open search"
+                        style={{ background: 'none', border: 'none', padding: 8, cursor: 'pointer' }}
+                        onClick={handleMobileSearchToggle}
+                    >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                    </button>
                     <button 
                         ref={buttonRef}
                         className="mobile-menu-toggle"
@@ -129,14 +166,16 @@ const Header = ({ title, onAdd, showAdd, search, setSearch }: HeaderProps) => {
                     >
                         ☰
                     </button>
+
+                  
                     <div 
                         ref={menuRef}
                         className={`mobile-menu-dropdown ${isMobileMenuOpen ? 'open' : ''}`}
                     >
                         {/* Search Bar in Mobile Menu */}
-                        <div className="mobile-search-container">
+                        {/* <div className="mobile-search-container">
                             <SearchBar search={search} setSearch={setSearch} />
-                        </div>
+                        </div> */}
                         <ul className="breadcrumb-menu">
                             <li><Link to="/" onClick={closeMobileMenu}>Home</Link></li>
                             <li><a href="#create-listing" onClick={closeMobileMenu}>Create a Listing</a></li>
@@ -200,6 +239,14 @@ const Header = ({ title, onAdd, showAdd, search, setSearch }: HeaderProps) => {
                     </div>
                 </div>
             </nav>
+
+                                {/* Mobile SearchBar Dropdown */}
+                                {isMobileSearchOpen && (
+                    <div className="mobile-search-container mobile-search-dropdown">
+                        <SearchBar search={search} setSearch={setSearch} />
+                    </div>
+                )}
+
         </header>
     )
 };
